@@ -897,10 +897,10 @@ function calcLGD(c) {
   return Math.min(68,Math.max(20,x));
 }
 function getGrade(sc,pd) {
-  if(sc>=84&&pd<=3) return{g:'A',col:getCSS('--green'),desc:'Prime Candidate',fac:0.25,pricing:'11–13% · 5–8% warrants'};
-  if(sc>=72)        return{g:'B',col:getCSS('--amber'),desc:'Qualified — Monitor',fac:0.20,pricing:'13–15% · 8–12% warrants'};
-  if(sc>=58)        return{g:'C',col:getCSS('--red'),desc:'Elevated Risk',fac:0.12,pricing:'15–17% · 12–20% warrants'};
-  return {g:'D',col:'#94A3B8',desc:'Not Eligible',fac:0,pricing:'Decline'};
+  if(sc>=84&&pd<=3) return{g:'A',col:getCSS('--green'),desc:'Low Risk Profile',fac:0.25,pricing:'11–13% · 5–8% warrants'};
+  if(sc>=72)        return{g:'B',col:getCSS('--amber'),desc:'Moderate Risk Profile',fac:0.20,pricing:'13–15% · 8–12% warrants'};
+  if(sc>=58)        return{g:'C',col:getCSS('--red'),desc:'Elevated Risk Profile',fac:0.12,pricing:'15–17% · 12–20% warrants'};
+  return             {g:'D',col:'#94A3B8',desc:'High Risk Profile',fac:0.08,pricing:'Requires deep diligence'};
 }
 function getCSS(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
 
@@ -1012,16 +1012,16 @@ function showAnalysis(c){
   <div class="dec-box">
     <div class="dec-grade" style="color:${g.col}">${g.g}</div>
     <div class="dec-desc" style="color:${g.col}">${g.desc} · AURA ${sc.total.toFixed(0)}/100</div>
-    <div class="dec-fac">${g.g==='D'?'Declined':`$${fac}M`}</div>
-    <div class="dec-facm">${g.g!=='D'?`${(g.fac*100).toFixed(0)}% of ARR · Source: ${c.src} (${arrDisp} ARR)`:''}</div>
+    <div class="dec-fac" style="font-size:22px;margin:6px 0 2px">Indicative Range: $${(c.arr*g.fac*0.7).toFixed(1)}M – $${(c.arr*g.fac*1.3).toFixed(1)}M</div>
+    <div class="dec-facm">Based on ${(g.fac*100).toFixed(0)}% of ARR · ECL team to determine final facility · Source: ${c.src} (${arrDisp} ARR)</div>
     <div class="dec-tags">
       <span class="dec-tag" style="color:var(--amber)">PD ${pd.toFixed(1)}%</span>
       <span class="dec-tag">LGD ${lgd.toFixed(1)}%</span>
       <span class="dec-tag" style="color:${el<5?'var(--green)':el<12?'var(--amber)':'var(--red)'}">EL ${el.toFixed(2)}%</span>
-      <span class="dec-tag">${g.pricing}</span>
+      <span class="dec-tag">Pricing range: ${g.pricing}</span>
     </div>
     <div style="display:flex;gap:8px">
-      ${g.g!=='D'?`<button class="btn btn-t" style="flex:1;font-size:12px" onclick="addToPipe()"><i class="fas fa-plus"></i> Add to Pipeline</button>`:''}
+      <button class="btn btn-t" style="flex:1;font-size:12px" onclick="addToPipe()"><i class="fas fa-plus"></i> Add to Pipeline</button>
       <button class="btn btn-ol" style="flex:1;font-size:12px" onclick="runAI()"><i class="fas fa-sparkles"></i> Generate Memo</button>
     </div>
   </div>`;
@@ -1047,23 +1047,26 @@ async function runAI(){
 ARR: $${c.arr}M (Source: ${c.src}) | GROWTH: ${c.g}% YoY | MARGIN: ${c.m}%
 NRR: ${c.nrr}% | LTV:CAC: ${c.ltv}× | BURN: ${c.burn}× | RUNWAY: ${c.run}mo
 FUNDING: $${c.fund}M | CONTRACT QUALITY: ${(c.cq*100).toFixed(0)}% | HHI: ${c.hhi} | TIER: ${c.tier}
-AURA: ${sc.total.toFixed(1)}/100 | GRADE: ${g.g} | PD: ${pd}% | LGD: ${lgd.toFixed(1)}%
-INDICATIVE FACILITY: $${fac}M | PRICING: ${g.pricing}`;
+AURA SCORE: ${sc.total.toFixed(1)}/100 | RISK GRADE: ${g.g} | PD: ${pd}% | LGD: ${lgd.toFixed(1)}%
+INDICATIVE RANGE: $${(c.arr*g.fac*0.7).toFixed(1)}M – $${(c.arr*g.fac*1.3).toFixed(1)}M | PRICING RANGE: ${g.pricing}`;
 
   const prompts={
-    memo:`You are AURA, Efficient Capital Labs' AI underwriting engine. Write a professional credit memo (350 words) for the ECL deal team.
+    memo:`You are AURA, Efficient Capital Labs' AI underwriting engine. Write a professional credit risk memo (350 words) for the ECL deal team to review.
 Context: ${ctx}
-Sections (ALL CAPS headers): EXECUTIVE SUMMARY | COMPANY OVERVIEW | FINANCIAL ANALYSIS | AURA RISK BREAKDOWN | KEY RISKS & MITIGANTS | RECOMMENDATION
-Be precise, data-driven, senior credit officer style.`,
-    ts:`You are AURA, ECL's AI underwriting engine. Generate an indicative term sheet.
+Sections (ALL CAPS headers): EXECUTIVE SUMMARY | COMPANY OVERVIEW | FINANCIAL ANALYSIS | AURA RISK BREAKDOWN | KEY RISKS & MITIGANTS | CONSIDERATIONS FOR ECL TEAM
+Important: Present findings objectively. Do NOT make a funding recommendation or use language like "approve", "decline", "fund", or "do not fund". ECL's deal team makes all funding decisions. Your role is to surface the risk picture clearly so they can decide.
+Be precise, data-driven, and senior credit officer in style.`,
+    ts:`You are AURA, ECL's AI underwriting engine. Generate an indicative term sheet for ECL's deal team to review.
 Context: ${ctx}
-Include: Lender/Borrower | Facility Amount & Structure | Tenor | Interest Rate | Warrant Coverage | Financial Covenants | Draw Conditions | Reporting Requirements | Events of Default | Closing Conditions
-Mark: *** INDICATIVE ONLY — NOT A COMMITMENT ***`,
+Include: Lender/Borrower | Indicative Facility Range | Structure | Tenor | Interest Rate Range | Warrant Coverage Range | Financial Covenants | Draw Conditions | Reporting Requirements | Events of Default | Closing Conditions
+Mark prominently: *** INDICATIVE ONLY — FOR ECL INTERNAL REVIEW — NOT A COMMITMENT ***
+Note: Final terms and whether to proceed are at ECL's sole discretion.`,
     email:`You are a senior deal professional at ECL (Efficient Capital Labs), a non-dilutive SaaS venture debt firm ($500K–$5M, 72-hour decisions, AURA AI).
-You are reaching out to the founder/CEO of ${c.n}.
+You are writing an initial outreach email to the founder/CEO of ${c.n}.
 Context: ${ctx}
-Write a warm 150-word outreach email with: personalised observation, non-dilutive value prop, specific metrics, indicative facility $${fac}M, CTA for 15-min call, P.S. line.
-Format: SUBJECT: / [body] / P.S.`
+Write a warm 150-word outreach email with: a personalised observation about their business, ECL's non-dilutive value proposition, their specific metrics to show you've done homework, an indicative range of $${(c.arr*g.fac*0.7).toFixed(1)}M–$${(c.arr*g.fac*1.3).toFixed(1)}M as a conversation starter (not a commitment), and a CTA for a 15-min call.
+Format: SUBJECT: / [body] / P.S.
+Do not promise funding or imply a decision has been made.`
   };
 
   try{
@@ -1092,10 +1095,12 @@ function addToPipe(){
   if(pipeline.some(d=>d.name===c.n))return toast(`${c.n} already in pipeline`,'err');
   const sc=aura(c),pd=calcPD(sc.total),lgd=calcLGD(c);
   const g=getGrade(sc.total,pd);
+  const facLow=(c.arr*g.fac*0.7).toFixed(1), facHigh=(c.arr*g.fac*1.3).toFixed(1);
   pipeline.unshift({
     id:Date.now(),name:c.n,sector:c.s,loc:c.l,
     arr:c.arr,growth:c.g,nrr:c.nrr,src:c.src,
     score:sc.total.toFixed(1),grade:g.g,
+    facRange:`$${facLow}M–$${facHigh}M`,
     facility:(c.arr*g.fac).toFixed(1),
     pd:pd.toFixed(1),lgd:lgd.toFixed(1),
     el:((pd/100)*(lgd/100)*100).toFixed(2),
@@ -1103,7 +1108,7 @@ function addToPipe(){
     added:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})
   });
   savePipe();
-  toast(`${c.n} → Pipeline · $${(c.arr*g.fac).toFixed(1)}M facility`,'ok');
+  toast(`${c.n} added to pipeline`,'ok');
   renderCos();
 }
 function removePipe(id){pipeline=pipeline.filter(d=>d.id!==id);savePipe();toast('Removed','ok');}
@@ -1137,7 +1142,7 @@ function renderPipe(){
   if(!pipeline.length){w.innerHTML='<div style="text-align:center;padding:40px;color:var(--text3);font-family:var(--mono);font-size:12px">No deals yet — add from Discovery</div>';return;}
   const stages=['Prospect','Diligence','Term Sheet','Funded','Declined'];
   w.innerHTML=`<table class="pipe-t">
-    <thead><tr><th>Company</th><th>Sector</th><th>ARR</th><th>Source</th><th>Score</th><th>Grade</th><th>Facility</th><th>PD%</th><th>EL%</th><th>Stage</th><th></th></tr></thead>
+    <thead><tr><th>Company</th><th>Sector</th><th>ARR</th><th>Source</th><th>Score</th><th>Grade</th><th>Indicative Range</th><th>PD%</th><th>EL%</th><th>Stage</th><th></th></tr></thead>
     <tbody>${pipeline.map(d=>`<tr>
       <td><strong>${d.name}</strong><br><span style="font-size:10px;color:var(--text3)">${d.loc}</span></td>
       <td class="tm" style="color:var(--text3)">${d.sector}</td>
@@ -1145,7 +1150,7 @@ function renderPipe(){
       <td class="tm" style="color:var(--text3)">${d.src}</td>
       <td class="tm" style="color:var(--teal)">${d.score}</td>
       <td><div class="grade-chip g${d.grade}">${d.grade}</div></td>
-      <td class="tm" style="color:var(--green)">$${d.facility}M</td>
+      <td class="tm" style="color:var(--teal);font-size:10px">${d.facRange||'$'+d.facility+'M'}</td>
       <td class="tm">${d.pd}%</td>
       <td class="tm" style="color:${parseFloat(d.el)<5?'var(--green)':parseFloat(d.el)<12?'var(--amber)':'var(--red)'}">${d.el}%</td>
       <td><select class="stage-sel" onchange="setStage(${d.id},this.value)">${stages.map(s=>`<option${d.stage===s?' selected':''}>${s}</option>`).join('')}</select></td>
@@ -1175,15 +1180,16 @@ function runCustom(){
     {num:'L7',name:'Sponsor',pts:sc.L7,max:8,detail:`Tier ${c.tier}`},
     {num:'G+',name:'Growth Bonus',pts:sc.GB,max:7,detail:`${c.g}%`},
   ];
+  const facLow=(c.arr*g.fac*0.7).toFixed(1), facHigh=(c.arr*g.fac*1.3).toFixed(1);
   document.getElementById('c-result').innerHTML=`
   <div class="card">
-    <div class="card-hd"><div class="card-ico ci-t"><i class="fas fa-chart-line"></i></div><h3>${c.n} — AURA</h3><div class="grade-chip g${g.g}" style="margin-left:auto;width:24px;height:24px;font-size:12px;border-radius:7px">${g.g}</div></div>
+    <div class="card-hd"><div class="card-ico ci-t"><i class="fas fa-chart-line"></i></div><h3>${c.n} — AURA Risk Analysis</h3><div class="grade-chip g${g.g}" style="margin-left:auto;width:24px;height:24px;font-size:12px;border-radius:7px">${g.g}</div></div>
     ${lyrs.map(l=>{const p=(l.pts/l.max)*100;const col=p>=70?'var(--teal)':p>=45?'var(--amber)':'var(--red)';return `<div class="layer-row"><div class="ln">${l.num}</div><div class="li"><div class="lname">${l.name}</div><div class="ldetail">${l.detail}</div></div><div><div class="lbar-t"><div class="lbar-f" style="width:${p}%;background:${col}"></div></div><div class="lbar-lbl">${l.pts.toFixed(1)} / ${l.max}</div></div><div class="lpts" style="color:${col}">${l.pts.toFixed(1)}</div></div>`;}).join('')}
     <div class="dec-box" style="margin-top:12px">
       <div class="dec-grade" style="color:${g.col}">${g.g}</div>
       <div class="dec-desc" style="color:${g.col}">${g.desc} · ${sc.total.toFixed(1)}/100</div>
-      <div class="dec-fac">${g.g==='D'?'Declined':'$'+fac+'M'}</div>
-      <div class="dec-facm">${g.g!=='D'?g.pricing:''}</div>
+      <div class="dec-fac" style="font-size:18px;margin:6px 0 2px">Indicative Range: $${facLow}M – $${facHigh}M</div>
+      <div class="dec-facm">Pricing range: ${g.pricing} · ECL team decides final terms</div>
       <div class="dec-tags">
         <span class="dec-tag" style="color:var(--amber)">PD ${pd.toFixed(1)}%</span>
         <span class="dec-tag">LGD ${lgd.toFixed(1)}%</span>
@@ -1191,7 +1197,7 @@ function runCustom(){
       </div>
     </div>
   </div>`;
-  toast('AURA analysis complete','ok');
+  toast('AURA risk analysis complete','ok');
 }
 function clearCustom(){
   ['c-name','c-arr','c-g','c-m','c-nrr','c-ltv','c-burn','c-run','c-cq','c-hhi'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
@@ -1201,8 +1207,8 @@ function clearCustom(){
 // ── EXPORT ──
 function doExport(){
   if(!pipeline.length)return toast('No deals to export','err');
-  const hdrs=['Company','Sector','Location','ARR($M)','Growth%','NRR%','Score','Grade','Facility($M)','PD%','LGD%','EL%','Pricing','Stage','Source','Added'];
-  const rows=pipeline.map(d=>[d.name,d.sector,d.loc,d.arr,d.growth,d.nrr,d.score,d.grade,d.facility,d.pd,d.lgd,d.el,`"${d.pricing}"`,d.stage,d.src,d.added]);
+  const hdrs=['Company','Sector','Location','ARR($M)','Growth%','NRR%','Score','Grade','Indicative Range','PD%','LGD%','EL%','Pricing Range','Stage','Source','Added'];
+  const rows=pipeline.map(d=>[d.name,d.sector,d.loc,d.arr,d.growth,d.nrr,d.score,d.grade,d.facRange||d.facility,d.pd,d.lgd,d.el,`"${d.pricing}"`,d.stage,d.src,d.added]);
   const csv=[hdrs,...rows].map(r=>r.join(',')).join('\n');
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
