@@ -3,538 +3,552 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ECL · AURA Intelligence Platform</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<title>AURA Intelligence Platform · ECL v2.0</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root {
-  --white: #ffffff;
-  --bg: #F8F9FC;
-  --bg2: #F0F2F7;
-  --surface: #ffffff;
-  --surface2: #F5F6FA;
-  --border: #E2E5EF;
-  --border2: #C8CDDE;
-  --teal: #0D9488;
-  --teal-lt: #CCFBF1;
-  --teal-md: #14B8A6;
-  --amber: #D97706;
-  --amber-lt: #FEF3C7;
-  --green: #059669;
-  --green-lt: #D1FAE5;
-  --red: #DC2626;
-  --red-lt: #FEE2E2;
-  --blue: #2563EB;
-  --blue-lt: #DBEAFE;
-  --purple: #7C3AED;
-  --purple-lt: #EDE9FE;
-  --text: #0F172A;
-  --text2: #475569;
-  --text3: #94A3B8;
-  --text4: #CBD5E1;
-  --mono: 'JetBrains Mono', monospace;
-  --sans: 'Inter', sans-serif;
+  --ink: #0A0E1A;
+  --ink2: #3D4560;
+  --ink3: #7E88A8;
+  --ink4: #B8BFCF;
+  --bg: #F3F5FA;
+  --bg2: #EAECF4;
+  --surface: #FFFFFF;
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.14);
+  --teal: #0A8C7A;
+  --teal-lt: #D4F5EF;
+  --teal-md: #13B39B;
+  --teal-glow: rgba(10,140,122,0.12);
+  --amber: #C47A00;
+  --amber-lt: #FEF3D0;
+  --green: #1A7A52;
+  --green-lt: #D4F5E3;
+  --red: #C42B2B;
+  --red-lt: #FFE8E8;
+  --blue: #1A4FAA;
+  --blue-lt: #DCE8FF;
+  --purple: #6B2FAA;
+  --purple-lt: #EFE6FF;
+  --mono: 'DM Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
   --r: 10px;
-  --r2: 14px;
-  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow2: 0 4px 12px rgba(0,0,0,0.08);
+  --r2: 16px;
+  --sh: 0 2px 8px rgba(0,0,0,0.06), 0 0 0 0.5px rgba(0,0,0,0.06);
+  --sh2: 0 8px 24px rgba(0,0,0,0.10), 0 0 0 0.5px rgba(0,0,0,0.06);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 14px; }
-body { font-family: var(--sans); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+html { font-size: 13.5px; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
 
 /* ── LAYOUT ── */
 .app { display: flex; min-height: 100vh; }
 
 /* ── SIDEBAR ── */
 .sidebar {
-  width: 210px; flex-shrink: 0;
-  background: var(--white);
-  border-right: 1px solid var(--border);
+  width: 220px; flex-shrink: 0;
+  background: var(--ink);
   display: flex; flex-direction: column;
   position: fixed; top: 0; left: 0; bottom: 0;
   z-index: 100;
 }
-.logo-wrap {
-  padding: 20px 16px 16px;
-  border-bottom: 1px solid var(--border);
-}
-.logo-row { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+.logo-wrap { padding: 20px 16px 18px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
 .logo-mark {
-  width: 30px; height: 30px; border-radius: 8px;
-  background: var(--teal); color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 13px;
+  width: 32px; height: 32px; border-radius: 9px;
+  background: linear-gradient(135deg, var(--teal-md), var(--teal));
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 13px; letter-spacing: -0.5px; flex-shrink: 0;
 }
-.logo-text { font-size: 15px; font-weight: 700; }
-.logo-sub { font-size: 9px; color: var(--text3); font-family: var(--mono); letter-spacing: 0.5px; margin-top: 1px; }
+.logo-text { font-size: 15px; font-weight: 600; color: #fff; letter-spacing: -0.2px; }
+.logo-sub { font-size: 9px; color: rgba(255,255,255,0.35); font-family: var(--mono); letter-spacing: 0.8px; }
 .aura-pill {
-  display: flex; align-items: center; gap: 7px;
-  background: var(--teal-lt); border-radius: 20px;
-  padding: 5px 10px; font-size: 10px;
-  color: var(--teal); font-family: var(--mono);
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(19,179,155,0.15); border: 1px solid rgba(19,179,155,0.25);
+  border-radius: 20px; padding: 5px 10px;
+  font-size: 9px; color: var(--teal-md); font-family: var(--mono); letter-spacing: 0.5px;
 }
-.aura-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); animation: blink 2s infinite; }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+.aura-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-md); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(0.8)} }
 
-.nav { flex: 1; padding: 12px 10px; }
-.nav-sect { margin-bottom: 20px; }
-.nav-lbl { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); font-family: var(--mono); padding: 0 8px; margin-bottom: 5px; }
+.nav { flex: 1; padding: 14px 10px; overflow-y: auto; }
+.nav-sect { margin-bottom: 22px; }
+.nav-lbl { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); font-family: var(--mono); padding: 0 9px; margin-bottom: 5px; }
 .nav-item {
   display: flex; align-items: center; gap: 9px;
-  padding: 8px 10px; border-radius: 8px;
+  padding: 8px 11px; border-radius: 8px;
   cursor: pointer; font-size: 12.5px; font-weight: 500;
-  color: var(--text2); margin-bottom: 1px;
-  transition: all 0.15s;
+  color: rgba(255,255,255,0.45); margin-bottom: 1px;
+  transition: all 0.15s ease;
 }
-.nav-item i { width: 15px; text-align: center; font-size: 12px; flex-shrink: 0; }
-.nav-item:hover { background: var(--bg); color: var(--text); }
-.nav-item.active { background: var(--teal-lt); color: var(--teal); font-weight: 600; }
+.nav-item i { width: 16px; text-align: center; font-size: 12px; flex-shrink: 0; }
+.nav-item:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.85); }
+.nav-item.active { background: rgba(19,179,155,0.18); color: var(--teal-md); }
 .nav-item .badge {
-  margin-left: auto; background: var(--bg2);
+  margin-left: auto; background: rgba(255,255,255,0.08);
   border-radius: 20px; padding: 1px 7px;
-  font-size: 10px; font-family: var(--mono); color: var(--text3);
+  font-size: 10px; font-family: var(--mono); color: rgba(255,255,255,0.3);
 }
-.nav-item.active .badge { background: rgba(13,148,136,.15); color: var(--teal); }
-.sb-footer { padding: 12px 14px; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 9px; color: var(--text4); text-align: center; }
+.nav-item.active .badge { background: rgba(19,179,155,0.2); color: var(--teal-md); }
+.sb-footer { padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.07); }
+.sb-user { display: flex; align-items: center; gap: 10px; }
+.sb-avatar { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); }
+.sb-name { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.6); }
+.sb-role { font-size: 9px; color: rgba(255,255,255,0.25); font-family: var(--mono); letter-spacing: 0.3px; }
 
 /* ── MAIN ── */
-.main { margin-left: 210px; flex: 1; display: flex; flex-direction: column; }
+.main { margin-left: 220px; flex: 1; display: flex; flex-direction: column; }
 
-/* ── TOPBAR ── */
+/* ── TOP BAR ── */
 .topbar {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(12px);
+  height: 54px; background: var(--surface);
   border-bottom: 1px solid var(--border);
-  padding: 0 24px; height: 54px;
-  display: flex; align-items: center; gap: 16px;
+  display: flex; align-items: center; padding: 0 24px; gap: 12px;
+  position: sticky; top: 0; z-index: 50;
 }
-.tb-title { font-size: 15px; font-weight: 700; }
-.tb-sub { font-size: 10px; color: var(--text3); font-family: var(--mono); margin-top: 1px; }
-.tb-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
-.search-box {
+.tb-title { font-size: 14px; font-weight: 600; color: var(--ink); flex: 1; }
+.tb-sub { font-size: 11px; color: var(--ink3); font-family: var(--mono); }
+.tb-sep { width: 1px; height: 20px; background: var(--border2); margin: 0 4px; }
+.tb-btn {
   display: flex; align-items: center; gap: 7px;
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: 20px; padding: 6px 14px; min-width: 230px;
-  transition: border-color .15s;
+  padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border2);
+  background: transparent; cursor: pointer; font-family: var(--sans);
+  font-size: 12px; font-weight: 500; color: var(--ink2); transition: all 0.15s;
 }
-.search-box:focus-within { border-color: var(--teal); }
-.search-box input { background: none; border: none; outline: none; color: var(--text); font-size: 12.5px; font-family: var(--sans); width: 100%; }
-.search-box input::placeholder { color: var(--text3); }
-.search-box i { color: var(--text3); font-size: 11px; }
+.tb-btn:hover { background: var(--bg); color: var(--ink); }
+.tb-btn.primary { background: var(--teal); border-color: var(--teal); color: #fff; }
+.tb-btn.primary:hover { background: var(--teal-md); border-color: var(--teal-md); }
+.key-input { padding: 5px 10px; border: 1px solid var(--border2); border-radius: 8px; font-family: var(--mono); font-size: 11px; color: var(--ink2); background: var(--bg); width: 220px; outline: none; }
+.key-input:focus { border-color: var(--teal); }
+#key-status { font-size: 10px; font-family: var(--mono); color: var(--ink3); padding: 4px 8px; border-radius: 6px; background: var(--bg2); }
+#key-status.ok { color: var(--green); background: var(--green-lt); }
+#key-status.err { color: var(--red); background: var(--red-lt); }
 
-/* ── PAGES ── */
-.page { display: none; padding: 22px 24px; }
+/* ── PAGE ── */
+.page { display: none; padding: 24px 26px; }
 .page.active { display: block; }
-.ph { margin-bottom: 20px; }
-.ph h2 { font-size: 22px; font-weight: 700; margin-bottom: 3px; }
-.ph p { font-size: 12.5px; color: var(--text2); }
-.ph-meta { font-family: var(--mono); font-size: 9.5px; color: var(--text3); margin-top: 5px; letter-spacing: .3px; }
+
+/* ── PAGE HEADER ── */
+.ph { margin-bottom: 22px; }
+.ph h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--ink); margin-bottom: 4px; }
+.ph p { font-size: 13px; color: var(--ink3); line-height: 1.5; }
+.ph-meta { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; color: var(--teal); margin-top: 8px; }
 
 /* ── KPI ROW ── */
-.kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
-.kpi {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: var(--r2); padding: 14px 16px;
-  box-shadow: var(--shadow); position: relative; overflow: hidden;
-}
-.kpi::after {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-}
-.kpi.t::after { background: var(--teal); }
-.kpi.g::after { background: var(--green); }
-.kpi.a::after { background: var(--amber); }
-.kpi.b::after { background: var(--blue); }
-.kpi-lbl { font-size: 9.5px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text3); font-family: var(--mono); margin-bottom: 7px; }
-.kpi-val { font-family: var(--mono); font-size: 26px; font-weight: 600; line-height: 1; }
-.kpi.t .kpi-val { color: var(--teal); }
-.kpi.g .kpi-val { color: var(--green); }
-.kpi.a .kpi-val { color: var(--amber); }
-.kpi.b .kpi-val { color: var(--blue); }
-.kpi-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
+.kpi-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+.kpi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r2); padding: 16px 18px; position: relative; overflow: hidden; }
+.kpi::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; border-radius:var(--r2) var(--r2) 0 0; }
+.kpi.t::before { background: var(--teal-md); }
+.kpi.g::before { background: var(--green); }
+.kpi.a::before { background: var(--amber); }
+.kpi.b::before { background: var(--blue); }
+.kpi.p::before { background: var(--purple); }
+.kpi-lbl { font-size: 10.5px; color: var(--ink3); font-weight: 500; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-val { font-size: 22px; font-weight: 700; letter-spacing: -0.8px; color: var(--ink); line-height: 1; margin-bottom: 4px; font-family: var(--mono); }
+.kpi-sub { font-size: 10px; color: var(--ink3); }
 
 /* ── CARDS ── */
-.card {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: var(--r2); padding: 16px;
-  box-shadow: var(--shadow);
-}
-.card-hd {
-  display: flex; align-items: center; gap: 9px;
-  margin-bottom: 14px; padding-bottom: 11px;
-  border-bottom: 1px solid var(--bg2);
-}
-.card-hd h3 { font-size: 13px; font-weight: 600; }
-.card-ico {
-  width: 26px; height: 26px; border-radius: 7px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; flex-shrink: 0;
-}
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r2); padding: 18px 20px; margin-bottom: 16px; }
+.card-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.card-hd h3 { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.card-ico { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
 .ci-t { background: var(--teal-lt); color: var(--teal); }
-.ci-a { background: var(--amber-lt); color: var(--amber); }
 .ci-g { background: var(--green-lt); color: var(--green); }
+.ci-a { background: var(--amber-lt); color: var(--amber); }
 .ci-b { background: var(--blue-lt); color: var(--blue); }
+.ci-p { background: var(--purple-lt); color: var(--purple); }
+.ci-r { background: var(--red-lt); color: var(--red); }
 
-/* ── LAYOUT ── */
+/* ── SPLIT LAYOUTS ── */
+.g-split { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; }
 .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
-.g-split { display: grid; grid-template-columns: 320px 1fr; gap: 16px; align-items: start; }
-@media(max-width:1200px){ .g-split{ grid-template-columns:1fr; } .kpi-row,.g2,.g3{ grid-template-columns:1fr 1fr; } }
-@media(max-width:760px){ .kpi-row{ grid-template-columns:1fr 1fr; } }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 
-/* ── FILTERS ── */
-.filter-row { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 12px; align-items: center; }
+/* ── FILTER ROW ── */
+.filter-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; align-items: center; }
 .fsel {
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: 20px; padding: 5px 12px;
-  font-size: 12px; color: var(--text); font-family: var(--sans);
-  outline: none; cursor: pointer; transition: border-color .15s;
-  appearance: none; -webkit-appearance: none;
+  height: 32px; padding: 0 10px; border: 1px solid var(--border2);
+  border-radius: 8px; font-family: var(--sans); font-size: 12px;
+  color: var(--ink2); background: var(--bg); cursor: pointer; outline: none;
 }
 .fsel:focus { border-color: var(--teal); }
-.fsel option { background: var(--white); }
-.rcount { margin-left: auto; font-family: var(--mono); font-size: 10px; color: var(--text3); }
+.fsearch {
+  flex: 1; min-width: 160px; height: 32px; padding: 0 10px 0 32px;
+  border: 1px solid var(--border2); border-radius: 8px;
+  font-family: var(--sans); font-size: 12px; color: var(--ink); background: var(--bg);
+  outline: none; position: relative;
+}
+.fsearch:focus { border-color: var(--teal); background: var(--surface); }
+.search-wrap { position: relative; flex: 1; min-width: 160px; }
+.search-wrap i { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--ink3); font-size: 11px; pointer-events: none; }
+.rcount { font-family: var(--mono); font-size: 10px; color: var(--teal); background: var(--teal-lt); padding: 2px 8px; border-radius: 20px; margin-left: auto; }
 
-/* ── COMPANY CARDS ── */
-.co-grid {
-  display: grid; grid-template-columns: repeat(auto-fill,minmax(235px,1fr));
-  gap: 8px; max-height: 500px; overflow-y: auto; padding-right: 2px;
-}
-.co-grid::-webkit-scrollbar { width: 3px; }
-.co-grid::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+/* ── COMPANY GRID ── */
+.co-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-height: 620px; overflow-y: auto; padding-right: 4px; }
+.co-grid::-webkit-scrollbar { width: 4px; }
+.co-grid::-webkit-scrollbar-track { background: transparent; }
+.co-grid::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
 .co-card {
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 11px 13px;
-  cursor: pointer; transition: all .15s;
+  border: 1px solid var(--border); border-radius: var(--r); padding: 12px 14px;
+  cursor: pointer; transition: all 0.15s ease; background: var(--surface);
+  position: relative;
 }
-.co-card:hover { border-color: var(--teal); background: var(--teal-lt); transform: translateY(-1px); box-shadow: var(--shadow); }
-.co-card.sel { border-color: var(--teal); background: var(--teal-lt); }
-.co-card.in-pipe .pip-chk { display: flex !important; }
-.co-top { display: flex; align-items: flex-start; gap: 7px; margin-bottom: 5px; }
-.co-name { font-size: 13px; font-weight: 600; flex: 1; line-height: 1.2; }
-.pip-chk {
-  display: none !important;
-  width: 16px; height: 16px; border-radius: 50%;
-  background: var(--green); align-items: center;
-  justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0;
-}
+.co-card:hover { border-color: var(--teal); transform: translateY(-1px); box-shadow: var(--sh2); }
+.co-card.selected { border-color: var(--teal); background: #FAFFFE; box-shadow: 0 0 0 2px var(--teal-glow); }
+.co-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; }
+.co-name { font-size: 12.5px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+.co-loc { font-size: 10px; color: var(--ink3); margin-top: 1px; }
 .grade-chip {
-  width: 20px; height: 20px; border-radius: 5px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center;
+  justify-content: center; font-weight: 700; font-size: 12px; flex-shrink: 0;
 }
 .gA { background: var(--green-lt); color: var(--green); }
 .gB { background: var(--amber-lt); color: var(--amber); }
 .gC { background: var(--red-lt); color: var(--red); }
-.gD { background: var(--bg2); color: var(--text3); }
-.co-meta { font-size: 10px; color: var(--text3); margin-bottom: 6px; }
-.co-stats { display: flex; gap: 5px; flex-wrap: wrap; }
-.co-stat {
-  font-family: var(--mono); font-size: 10px;
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 4px; padding: 1px 5px; color: var(--text2);
-}
-.co-bar { margin-top: 7px; height: 3px; background: var(--bg2); border-radius: 2px; overflow: hidden; }
-.co-bar-fill { height: 100%; border-radius: 2px; }
-.source-dot {
-  display: inline-block; width: 5px; height: 5px;
-  border-radius: 50%; margin-right: 4px; vertical-align: middle;
-}
+.gD { background: var(--bg2); color: var(--ink3); }
+.co-metrics { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
+.cm { text-align: center; background: var(--bg); border-radius: 6px; padding: 4px 3px; }
+.cm-val { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--ink); }
+.cm-lbl { font-size: 9px; color: var(--ink3); margin-top: 1px; }
+.co-bar-wrap { margin: 8px 0 4px; }
+.co-bar-bg { height: 3px; background: var(--bg2); border-radius: 4px; overflow: hidden; }
+.co-bar-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
+.co-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+.co-score { font-family: var(--mono); font-size: 10px; color: var(--ink3); }
+.src-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+.co-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.tag { font-size: 9px; font-family: var(--mono); padding: 2px 6px; border-radius: 4px; font-weight: 500; }
+.tag-sec { background: var(--blue-lt); color: var(--blue); }
+.tag-ecl { background: var(--teal-lt); color: var(--teal); }
 
-/* ── ANALYSIS ── */
-.analysis-empty {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: var(--r2); padding: 50px 20px;
-  text-align: center; box-shadow: var(--shadow);
-}
-.ae-ico { font-size: 28px; opacity: .2; margin-bottom: 12px; }
-.ae-t { font-size: 16px; font-weight: 700; color: var(--text2); margin-bottom: 4px; }
-.ae-s { font-size: 12px; color: var(--text3); }
+/* ── ANALYSIS PANEL ── */
+.analysis-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--surface); border: 1.5px dashed var(--border2); border-radius: var(--r2); min-height: 400px; text-align: center; }
+.ae-ico { font-size: 32px; margin-bottom: 12px; opacity: 0.5; }
+.ae-t { font-size: 15px; font-weight: 600; color: var(--ink2); margin-bottom: 5px; }
+.ae-s { font-size: 12px; color: var(--ink3); line-height: 1.6; }
 
-/* layer rows */
-.layer-row {
-  display: grid; grid-template-columns: 20px 1fr 120px 44px;
-  align-items: center; gap: 9px;
-  padding: 9px 0; border-bottom: 1px solid var(--bg2);
-}
-.layer-row:last-child { border-bottom: none; }
-.ln { font-family: var(--mono); font-size: 9px; color: var(--text3); }
-.li .lname { font-size: 12px; font-weight: 600; margin-bottom: 1px; }
-.li .ldetail { font-family: var(--mono); font-size: 9.5px; color: var(--text3); }
-.lbar-t { height: 4px; background: var(--bg2); border-radius: 2px; overflow: hidden; }
-.lbar-f { height: 100%; border-radius: 2px; transition: width .6s ease; }
-.lbar-lbl { font-family: var(--mono); font-size: 9px; color: var(--text3); margin-top: 2px; }
-.lpts { font-family: var(--mono); font-size: 12px; font-weight: 600; text-align: right; }
+/* ── RISK LAYERS ── */
+.layers-grid { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.layer-row { display: grid; grid-template-columns: 120px 1fr 48px; align-items: center; gap: 10px; }
+.layer-lbl { font-size: 11px; font-weight: 600; color: var(--ink2); }
+.layer-lbl span { display: block; font-size: 9px; color: var(--ink3); font-weight: 400; margin-top: 1px; font-family: var(--mono); }
+.layer-bar-bg { height: 8px; background: var(--bg2); border-radius: 20px; overflow: hidden; }
+.layer-bar-fill { height: 100%; border-radius: 20px; transition: width 0.6s cubic-bezier(0.4,0,0.2,1); }
+.layer-score { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--ink); text-align: right; }
+.layer-max { font-size: 9px; color: var(--ink3); }
 
-/* decision box */
-.dec-box {
-  background: linear-gradient(135deg, rgba(13,148,136,.06), #fff);
-  border: 1px solid rgba(13,148,136,.2);
-  border-radius: var(--r2); padding: 18px;
-  text-align: center; margin-top: 14px;
-}
-.dec-grade { font-size: 52px; font-weight: 800; line-height: 1; font-family: var(--mono); }
-.dec-desc { font-size: 12px; color: var(--text2); margin-bottom: 10px; }
-.dec-fac { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--teal); }
-.dec-facm { font-size: 11px; color: var(--text3); font-family: var(--mono); margin-bottom: 10px; }
-.dec-tags { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin-bottom: 12px; }
-.dec-tag {
-  font-family: var(--mono); font-size: 10px;
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 20px; padding: 3px 10px;
-}
+/* ── RISK METRICS TABLE ── */
+.risk-table { width: 100%; border-collapse: collapse; font-size: 11.5px; margin-top: 12px; }
+.risk-table th { padding: 6px 10px; text-align: left; background: var(--bg); color: var(--ink3); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+.risk-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); color: var(--ink2); vertical-align: top; }
+.risk-table tr:last-child td { border-bottom: none; }
+.metric-val { font-family: var(--mono); font-weight: 500; color: var(--ink); }
+.metric-good { color: var(--green); }
+.metric-warn { color: var(--amber); }
+.metric-bad { color: var(--red); }
 
-/* AI tabs */
-.ai-tabs { display: flex; gap: 5px; margin-bottom: 12px; }
+/* ── DECISION BOX ── */
+.dec-box { border-radius: var(--r); padding: 14px 16px; margin-top: 12px; border: 1px solid; }
+.dec-box.A { background: var(--green-lt); border-color: rgba(26,122,82,0.2); }
+.dec-box.B { background: var(--amber-lt); border-color: rgba(196,122,0,0.2); }
+.dec-box.C { background: var(--red-lt); border-color: rgba(196,43,43,0.2); }
+.dec-box.D { background: var(--bg2); border-color: var(--border2); }
+.dec-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.dec-grade { font-size: 20px; font-weight: 800; font-family: var(--mono); }
+.dec-title { font-size: 12px; font-weight: 600; }
+.dec-sub { font-size: 10px; color: var(--ink3); margin-top: 1px; }
+.dec-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px; }
+.dec-m { background: rgba(255,255,255,0.7); border-radius: 8px; padding: 8px; text-align: center; }
+.dec-m-val { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--ink); }
+.dec-m-lbl { font-size: 9px; color: var(--ink3); margin-top: 2px; }
+.pricing-pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.8); border-radius: 20px; padding: 5px 12px; font-size: 11px; font-family: var(--mono); font-weight: 500; color: var(--ink); margin-top: 10px; border: 1px solid rgba(0,0,0,0.08); }
+
+/* ── ADVANCED RISK METRICS ── */
+.risk-radar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.rr-item { background: var(--bg); border-radius: 8px; padding: 10px 12px; }
+.rr-label { font-size: 10px; color: var(--ink3); font-weight: 500; margin-bottom: 4px; }
+.rr-value { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--ink); }
+.rr-desc { font-size: 9px; color: var(--ink3); margin-top: 2px; }
+
+/* ── AI WORKSPACE ── */
+.ai-tabs { display: flex; gap: 4px; margin-bottom: 12px; flex-wrap: wrap; }
 .ai-tab {
-  padding: 6px 14px; border-radius: 20px;
-  font-size: 12px; font-weight: 500; cursor: pointer;
-  background: none; border: 1px solid transparent;
-  color: var(--text3); font-family: var(--sans); transition: all .15s;
+  padding: 6px 12px; border-radius: 7px; border: 1px solid var(--border2);
+  background: transparent; cursor: pointer; font-family: var(--sans);
+  font-size: 11.5px; font-weight: 500; color: var(--ink3); transition: all 0.15s;
 }
-.ai-tab:hover { color: var(--text); border-color: var(--border); }
-.ai-tab.active { background: var(--teal-lt); border-color: rgba(13,148,136,.3); color: var(--teal); }
+.ai-tab:hover { color: var(--ink); border-color: var(--ink3); }
+.ai-tab.active { background: var(--teal-lt); border-color: rgba(10,140,122,0.3); color: var(--teal); }
 .ai-pane { display: none; }
 .ai-pane.active { display: block; }
 .ai-out {
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 14px;
-  font-family: var(--mono); font-size: 11.5px;
-  line-height: 1.8; color: var(--text2);
-  white-space: pre-wrap; max-height: 360px; overflow-y: auto;
+  background: var(--bg); border-radius: var(--r); padding: 14px 16px;
+  font-size: 12.5px; color: var(--ink2); line-height: 1.8; white-space: pre-wrap;
+  max-height: 380px; overflow-y: auto; font-family: var(--sans);
 }
-.ai-ph { color: var(--text3); font-size: 12px; text-align: center; padding: 30px 16px; font-family: var(--mono); }
-.ai-load { display: flex; align-items: center; gap: 10px; color: var(--text3); font-family: var(--mono); font-size: 12px; padding: 16px; }
-.spin { width: 16px; height: 16px; border: 2px solid var(--border2); border-top-color: var(--teal); border-radius: 50%; animation: spin .7s linear infinite; flex-shrink: 0; }
-@keyframes spin { to{transform:rotate(360deg)} }
+.ai-load { text-align: center; padding: 30px; color: var(--ink3); font-family: var(--mono); font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.spin { width: 16px; height: 16px; border: 2px solid var(--border2); border-top-color: var(--teal); border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.ai-ph { padding: 30px; text-align: center; color: var(--ink3); font-size: 12px; }
+.ai-actions { display: flex; gap: 8px; margin-top: 10px; }
 
 /* ── BUTTONS ── */
 .btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 16px; border-radius: 20px;
-  font-size: 12px; font-weight: 600; cursor: pointer;
-  border: none; font-family: var(--sans); transition: all .15s;
-  white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 14px; border-radius: 8px; border: 1px solid;
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  cursor: pointer; transition: all 0.15s ease;
 }
-.btn-t { background: var(--teal); color: #fff; }
-.btn-t:hover { background: #0F766E; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(13,148,136,.3); }
-.btn-ol { background: transparent; border: 1px solid var(--border2); color: var(--text2); }
-.btn-ol:hover { border-color: var(--teal); color: var(--teal); }
-.btn-ghost { background: var(--bg); border: 1px solid var(--border); color: var(--text2); }
-.btn-ghost:hover { border-color: var(--border2); color: var(--text); }
-.btn-del { background: var(--red-lt); border: 1px solid rgba(220,38,38,.2); color: var(--red); }
-.btn-del:hover { background: #FEE2E2; }
-.btn-sm { padding: 5px 12px; font-size: 11px; }
+.btn-t { background: var(--teal); border-color: var(--teal); color: #fff; }
+.btn-t:hover { background: var(--teal-md); border-color: var(--teal-md); }
+.btn-ghost { background: transparent; border-color: var(--border2); color: var(--ink2); }
+.btn-ghost:hover { background: var(--bg); color: var(--ink); }
+.btn-sm { padding: 5px 10px; font-size: 11px; }
+.btn-danger { background: transparent; border-color: rgba(196,43,43,0.3); color: var(--red); }
+.btn-danger:hover { background: var(--red-lt); }
 
 /* ── PIPELINE TABLE ── */
-.pipe-t { width: 100%; border-collapse: collapse; }
-.pipe-t th { padding: 8px 11px; text-align: left; font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text3); border-bottom: 1px solid var(--border); }
-.pipe-t td { padding: 10px 11px; font-size: 12px; border-bottom: 1px solid var(--bg2); }
+.pipe-t { width: 100%; border-collapse: collapse; font-size: 12px; }
+.pipe-t th { padding: 8px 12px; text-align: left; background: var(--bg); border-bottom: 1px solid var(--border2); color: var(--ink3); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+.pipe-t td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--ink2); vertical-align: middle; }
 .pipe-t tr:last-child td { border-bottom: none; }
 .pipe-t tr:hover td { background: var(--bg); }
-.tm { font-family: var(--mono); font-size: 11px; }
-.stage-sel {
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: 6px; padding: 3px 7px;
-  font-size: 10px; font-family: var(--mono); color: var(--text);
-  cursor: pointer; outline: none;
-}
+.stage-sel { padding: 4px 8px; border: 1px solid var(--border2); border-radius: 6px; font-size: 11px; font-family: var(--sans); cursor: pointer; background: var(--bg); outline: none; }
 
-/* ── COMP TABLE ── */
-.comp-t { width: 100%; border-collapse: collapse; font-size: 12px; }
-.comp-t th { padding: 8px 11px; text-align: left; font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text3); background: var(--bg); border-bottom: 1px solid var(--border); }
-.comp-t td { padding: 10px 11px; border-bottom: 1px solid var(--bg2); }
-.comp-t tr.ecl td { background: rgba(13,148,136,.04); border-left: 2px solid var(--teal); }
+/* ── BENCHMARK TABLE ── */
+.comp-t { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+.comp-t th { padding: 8px 10px; text-align: left; background: var(--bg); border-bottom: 1px solid var(--border2); color: var(--ink3); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; white-space: nowrap; }
+.comp-t td { padding: 10px 10px; border-bottom: 1px solid var(--border); color: var(--ink2); white-space: nowrap; }
+.comp-t tr:last-child td { border-bottom: none; }
+.comp-t tr.ecl td { background: rgba(10,140,122,0.04); }
+.comp-t .badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 9.5px; font-family: var(--mono); font-weight: 500; }
+.b-green { background: var(--green-lt); color: var(--green); }
+.b-red { background: var(--red-lt); color: var(--red); }
+.b-amber { background: var(--amber-lt); color: var(--amber); }
+.b-blue { background: var(--blue-lt); color: var(--blue); }
+.b-teal { background: var(--teal-lt); color: var(--teal); }
+.b-gray { background: var(--bg2); color: var(--ink3); }
 
-/* ── MARKET ── */
-.mi-g { display: grid; grid-template-columns: repeat(3,1fr); gap: 11px; margin-bottom: 18px; }
-.mi-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--r2); padding: 14px; box-shadow: var(--shadow); }
-.mi-lbl { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text3); margin-bottom: 7px; }
-.mi-val { font-family: var(--mono); font-size: 22px; font-weight: 600; }
-.mi-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
-.bench-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--bg2); }
-.bench-lbl { width: 130px; font-size: 12px; color: var(--text2); flex-shrink: 0; }
-.bench-t { flex: 1; height: 5px; background: var(--bg2); border-radius: 2px; overflow: hidden; }
-.bench-f { height: 100%; border-radius: 2px; }
-.bench-val { width: 50px; text-align: right; font-family: var(--mono); font-size: 11px; color: var(--teal); flex-shrink: 0; }
+/* ── MARKET INTEL CARDS ── */
+.mi-g { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+.mi-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r2); padding: 16px 18px; }
+.mi-lbl { font-size: 10px; color: var(--ink3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.mi-val { font-size: 24px; font-weight: 700; letter-spacing: -0.8px; font-family: var(--mono); margin-bottom: 3px; }
+.mi-sub { font-size: 10.5px; color: var(--ink3); }
 
-/* ── FORM ── */
+/* ── BARS ── */
+.bench-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.bench-lbl { font-size: 11.5px; color: var(--ink2); width: 140px; flex-shrink: 0; }
+.bench-t { flex: 1; height: 8px; background: var(--bg2); border-radius: 4px; overflow: hidden; }
+.bench-f { height: 100%; border-radius: 4px; }
+.bench-val { font-family: var(--mono); font-size: 10.5px; color: var(--ink3); width: 50px; text-align: right; }
+
+/* ── FORM GRID ── */
 .form-g { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .fg { display: flex; flex-direction: column; gap: 5px; }
-.fg label { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: .5px; color: var(--text3); }
+.fg label { font-size: 11px; font-weight: 500; color: var(--ink2); }
 .fg input, .fg select {
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: 8px; padding: 8px 11px;
-  color: var(--text); font-size: 12.5px; font-family: var(--sans);
-  outline: none; transition: border-color .15s;
+  height: 34px; padding: 0 10px; border: 1px solid var(--border2);
+  border-radius: 8px; font-family: var(--sans); font-size: 12px;
+  color: var(--ink); background: var(--bg); outline: none; width: 100%;
 }
-.fg input:focus, .fg select:focus { border-color: var(--teal); background: var(--white); }
-.fg select option { background: var(--white); }
-
-/* ── TOAST ── */
-.toast-wrap { position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 7px; }
-.toast {
-  display: flex; align-items: center; gap: 9px;
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 10px; padding: 10px 14px; font-size: 12px;
-  font-family: var(--mono); box-shadow: var(--shadow2);
-  animation: tin .3s ease; max-width: 320px;
-}
-.toast.ok { border-color: rgba(5,150,105,.3); }
-.toast.err { border-color: rgba(220,38,38,.3); }
-.t-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-.toast.ok .t-dot { background: var(--green); }
-.toast.err .t-dot { background: var(--red); }
-@keyframes tin { from{transform:translateX(40px);opacity:0} to{transform:translateX(0);opacity:1} }
+.fg input:focus, .fg select:focus { border-color: var(--teal); background: var(--surface); }
+.fg .hint { font-size: 9.5px; color: var(--ink3); font-family: var(--mono); }
+.fg-full { grid-column: 1 / -1; }
 
 /* ── SOURCE LEGEND ── */
-.src-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; font-size: 10px; color: var(--text3); }
-.src-item { display: flex; align-items: center; gap: 4px; }
+.src-legend { display: flex; gap: 14px; flex-wrap: wrap; padding: 10px 0 0; border-top: 1px solid var(--border); margin-top: 10px; }
+.src-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--ink3); }
 
-/* scroll */
-::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+/* ── PIPELINE FUNNEL ── */
+.funnel-row { display: flex; gap: 0; margin-bottom: 16px; }
+.funnel-stage { flex: 1; text-align: center; padding: 12px 8px; position: relative; }
+.funnel-stage::after { content: '›'; position: absolute; right: -4px; top: 50%; transform: translateY(-50%); font-size: 16px; color: var(--ink4); z-index: 1; }
+.funnel-stage:last-child::after { display: none; }
+.funnel-stage.active-stage { background: var(--teal-lt); border-radius: 8px; }
+.fs-n { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--ink); }
+.fs-lbl { font-size: 10px; color: var(--ink3); margin-top: 3px; }
 
-/* ── DARK MODE ── */
-body.dark {
-  --white: #0C1220;
-  --bg: #080C12;
-  --bg2: #0F1828;
-  --border: rgba(255,255,255,0.08);
-  --border2: rgba(255,255,255,0.14);
-  --teal: #14B8A6;
-  --teal-lt: rgba(20,184,166,0.12);
-  --amber: #F59E0B;
-  --amber-lt: rgba(245,158,11,0.12);
-  --green: #10B981;
-  --green-lt: rgba(16,185,129,0.12);
-  --red: #F43F5E;
-  --red-lt: rgba(244,63,94,0.12);
-  --blue: #60A5FA;
-  --blue-lt: rgba(96,165,250,0.12);
-  --text: #F1F5F9;
-  --text2: #94A3B8;
-  --text3: #4B5563;
-  --text4: #2D3748;
-  --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
-  --shadow2: 0 4px 12px rgba(0,0,0,0.5);
+/* ── TOAST ── */
+.toast-wrap { position: fixed; bottom: 20px; right: 20px; z-index: 999; display: flex; flex-direction: column; gap: 8px; }
+.toast { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px; font-size: 12.5px; color: #fff; box-shadow: var(--sh2); animation: toastIn 0.25s ease; }
+.toast.ok { background: var(--ink); }
+.toast.err { background: var(--red); }
+@keyframes toastIn { from { opacity: 0; transform: translateY(10px); } }
+
+/* ── WATCHLIST ── */
+.wl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.wl-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r2); padding: 14px 16px; }
+.wl-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.wl-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+.wl-sector { font-size: 10px; color: var(--ink3); margin-top: 2px; }
+.wl-change { font-family: var(--mono); font-size: 11px; }
+.wl-change.pos { color: var(--green); }
+.wl-change.neg { color: var(--red); }
+.wl-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.wl-m { background: var(--bg); border-radius: 7px; padding: 6px 8px; }
+.wl-m-val { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--ink); }
+.wl-m-lbl { font-size: 9px; color: var(--ink3); margin-top: 1px; }
+
+/* ── PITCH SECTION ── */
+.pitch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pitch-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r2); padding: 18px 20px; }
+.pitch-card.accent { border-color: var(--teal); background: linear-gradient(135deg, #F0FDFB 0%, #fff 100%); }
+.pitch-num { font-size: 36px; font-weight: 800; font-family: var(--mono); color: var(--teal); letter-spacing: -2px; }
+.pitch-label { font-size: 12px; font-weight: 600; color: var(--ink); margin: 6px 0 4px; }
+.pitch-desc { font-size: 12px; color: var(--ink3); line-height: 1.6; }
+.pitch-vs { background: var(--bg2); border-radius: 8px; padding: 8px 12px; margin-top: 12px; font-size: 11px; color: var(--ink3); }
+.pitch-vs strong { color: var(--red); }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 5px; }
+
+/* ── CUSTOM RISK CALC ── */
+.meter { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.meter-lbl { font-size: 10px; color: var(--ink3); width: 90px; flex-shrink: 0; }
+.meter-bar { flex: 1; height: 6px; background: var(--bg2); border-radius: 4px; overflow: hidden; }
+.meter-fill { height: 100%; border-radius: 4px; transition: width 0.5s; }
+.meter-val { font-family: var(--mono); font-size: 10px; color: var(--ink); width: 40px; text-align: right; }
+
+.score-ring { width: 90px; height: 90px; position: relative; flex-shrink: 0; }
+.score-ring svg { transform: rotate(-90deg); }
+.ring-bg { fill: none; stroke: var(--bg2); stroke-width: 8; }
+.ring-fg { fill: none; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 0.8s cubic-bezier(0.4,0,0.2,1); }
+.ring-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
+.ring-score { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--ink); display: block; }
+.ring-lbl { font-size: 9px; color: var(--ink3); display: block; margin-top: -2px; }
+
+/* ECL SWEET SPOT BADGE */
+.sweetspot-badge { background: var(--teal-lt); color: var(--teal); border: 1px solid rgba(10,140,122,0.2); border-radius: 20px; padding: 3px 10px; font-size: 10px; font-family: var(--mono); font-weight: 500; }
+.no-badge { background: var(--red-lt); color: var(--red); border: 1px solid rgba(196,43,43,0.2); border-radius: 20px; padding: 3px 10px; font-size: 10px; font-family: var(--mono); }
+
+.info-row { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 8px; }
+.info-item { display: flex; flex-direction: column; gap: 2px; }
+.info-label { font-size: 10px; color: var(--ink3); }
+.info-value { font-family: var(--mono); font-size: 12.5px; font-weight: 500; color: var(--ink); }
+
+@media (max-width: 1100px) {
+  .g-split { grid-template-columns: 1fr; }
+  .kpi-row { grid-template-columns: repeat(3, 1fr); }
+  .form-g { grid-template-columns: 1fr; }
 }
-body.dark .fsel option,
-body.dark .fg select option { background: #111827; }
-body.dark .fg input,
-body.dark .fg select { background: #0C1220; }
-body.dark .stage-sel { background: #111827; color: #F1F5F9; }
-body.dark .topbar { background: rgba(8,12,18,0.96); }
-body { transition: background .25s, color .25s; }
-
-/* ── THEME TOGGLE ── */
-.theme-btn {
-  width: 32px; height: 32px; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--bg2); border: 1px solid var(--border);
-  cursor: pointer; font-size: 15px; flex-shrink: 0;
-  transition: all .15s; color: var(--text2);
-  outline: none;
-}
-.theme-btn:hover { border-color: var(--teal); color: var(--teal); }
-
-@media(max-width:900px){
-  .sidebar { width: 52px; }
-  .logo-wrap, .nav-lbl, .nav-item span, .nav-item .badge, .sb-footer, .logo-sub, .aura-pill { display: none; }
-  .main { margin-left: 52px; }
+@media (max-width: 800px) {
+  .sidebar { width: 50px; }
+  .sidebar .logo-wrap > *:not(.logo-row), .nav-lbl, .nav-item span, .sb-name, .sb-role, .aura-pill { display: none; }
+  .logo-row { justify-content: center; }
+  .logo-text { display: none; }
   .nav-item { justify-content: center; padding: 10px 6px; }
   .nav-item i { width: auto; }
+  .main { margin-left: 50px; }
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
 <body>
-<div class="app">
 
-<!-- ── SIDEBAR ── -->
-<nav class="sidebar">
+<div class="app">
+<!-- ══════════════════════ SIDEBAR ══════════════════════ -->
+<aside class="sidebar">
   <div class="logo-wrap">
     <div class="logo-row">
-      <div class="logo-mark">E</div>
+      <div class="logo-mark">ECL</div>
       <div>
-        <div class="logo-text">ECL Labs</div>
-        <div class="logo-sub">AURA PLATFORM</div>
+        <div class="logo-text">AURA</div>
+        <div class="logo-sub">INTELLIGENCE PLATFORM</div>
       </div>
     </div>
-    <div class="aura-pill"><div class="aura-dot"></div>AURA ACTIVE</div>
+    <div class="aura-pill"><div class="aura-dot"></div>AURA v2.0 ACTIVE</div>
   </div>
-  <div class="nav">
+  <nav class="nav">
     <div class="nav-sect">
-      <div class="nav-lbl">Deal Flow</div>
+      <div class="nav-lbl">Deal Intelligence</div>
       <div class="nav-item active" data-page="discovery">
-        <i class="fas fa-radar"></i><span>Discovery</span><div class="badge" id="nb-all">60</div>
+        <i class="fas fa-radar"></i><span>Deal Discovery</span><span class="badge" id="nb-disc">60</span>
+      </div>
+      <div class="nav-item" data-page="risk">
+        <i class="fas fa-shield-halved"></i><span>Risk Lab</span>
       </div>
       <div class="nav-item" data-page="pipeline">
-        <i class="fas fa-layer-group"></i><span>Pipeline</span><div class="badge" id="nb-pipe">0</div>
+        <i class="fas fa-table-list"></i><span>Pipeline</span><span class="badge" id="nb-pipe">0</span>
+      </div>
+      <div class="nav-item" data-page="watchlist">
+        <i class="fas fa-eye"></i><span>Watchlist</span>
       </div>
     </div>
     <div class="nav-sect">
-      <div class="nav-lbl">Intelligence</div>
-      <div class="nav-item" data-page="benchmarking">
-        <i class="fas fa-chart-bar"></i><span>Benchmarking</span>
-      </div>
+      <div class="nav-lbl">Market Intelligence</div>
       <div class="nav-item" data-page="market">
-        <i class="fas fa-globe"></i><span>Market Intel</span>
+        <i class="fas fa-chart-area"></i><span>Market Intel</span>
+      </div>
+      <div class="nav-item" data-page="benchmarking">
+        <i class="fas fa-trophy"></i><span>Lender Bench</span>
+      </div>
+      <div class="nav-item" data-page="pitch">
+        <i class="fas fa-bullhorn"></i><span>Why AURA</span>
       </div>
     </div>
     <div class="nav-sect">
       <div class="nav-lbl">Tools</div>
       <div class="nav-item" data-page="custom">
-        <i class="fas fa-sliders"></i><span>Manual Entry</span>
+        <i class="fas fa-calculator"></i><span>Risk Calculator</span>
+      </div>
+    </div>
+  </nav>
+  <div class="sb-footer">
+    <div class="sb-user">
+      <div class="sb-avatar">EC</div>
+      <div>
+        <div class="sb-name">ECL Deal Team</div>
+        <div class="sb-role">UNDERWRITING · 2025</div>
       </div>
     </div>
   </div>
-  <div class="sb-footer">AURA v2 · ECL LABS © 2025</div>
-</nav>
+</aside>
 
-<!-- ── MAIN ── -->
+<!-- ══════════════════════ MAIN ══════════════════════ -->
 <div class="main">
+  <!-- TOPBAR -->
   <div class="topbar">
-    <div>
-      <div class="tb-title" id="tb-t">Deal Discovery</div>
-      <div class="tb-sub" id="tb-s">Real ARR data · Sacra, PitchBook, Company announcements · 2024–2025</div>
-    </div>
-    <div class="tb-right">
-      <div class="search-box">
-        <i class="fas fa-magnifying-glass"></i>
-        <input type="text" id="g-search" placeholder="Search companies, sectors…">
-      </div>
-      <button class="btn btn-ghost btn-sm" onclick="doExport()"><i class="fas fa-download"></i> Export</button>
-      <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle dark / light mode">🌙</button>
-      <button class="btn btn-t btn-sm" onclick="goPage('custom')"><i class="fas fa-plus"></i> Add</button>
-    </div>
+    <div class="tb-title" id="tb-title">Deal Discovery</div>
+    <div class="tb-sub" id="tb-sub">60 verified US SaaS companies · AURA 8-Layer Engine</div>
+    <div class="tb-sep"></div>
+    <input class="key-input" id="apiKey" type="password" placeholder="Paste Claude API key to enable AI…" oninput="checkKey()">
+    <span id="key-status">No key</span>
+    <div class="tb-sep"></div>
+    <button class="tb-btn" onclick="doExport()"><i class="fas fa-download"></i> Export CSV</button>
   </div>
 
-  <!-- PAGE: DISCOVERY -->
+  <!-- ═══════════════ PAGE: DISCOVERY ═══════════════ -->
   <div id="page-discovery" class="page active">
     <div class="ph">
       <h2>SaaS Deal Discovery</h2>
-      <p>60 verified US SaaS companies with actual ARR sourced from Sacra, official announcements, and public filings</p>
-      <div class="ph-meta">AURA 7-LAYER ENGINE · PD/LGD MODELLING · VERIFIED ARR DATA · SOURCES CITED</div>
+      <p>60 verified US SaaS companies · ARR sourced from Sacra, official announcements, GetLatka & public filings · AURA 8-Layer risk scoring</p>
+      <div class="ph-meta">AURA 8-LAYER ENGINE · PD/LGD/EL MODELLING · DSCR · CLV SCORING · VERIFIED ARR · SOURCES CITED</div>
     </div>
-
     <div class="kpi-row">
       <div class="kpi t"><div class="kpi-lbl">Pipeline ARR</div><div class="kpi-val" id="k-arr">$0M</div><div class="kpi-sub" id="k-arrs">0 companies</div></div>
       <div class="kpi g"><div class="kpi-lbl">Active Deals</div><div class="kpi-val" id="k-deals">0</div><div class="kpi-sub">in pipeline</div></div>
       <div class="kpi a"><div class="kpi-lbl">Avg AURA Score</div><div class="kpi-val" id="k-score">—</div><div class="kpi-sub">/ 100 composite</div></div>
       <div class="kpi b"><div class="kpi-lbl">Est. Facility Total</div><div class="kpi-val" id="k-fac">$0M</div><div class="kpi-sub">indicative</div></div>
+      <div class="kpi p"><div class="kpi-lbl">A-Grade Cos</div><div class="kpi-val" id="k-agrade">—</div><div class="kpi-sub">investment grade</div></div>
     </div>
-
     <div class="g-split">
       <div>
         <div class="card">
           <div class="card-hd">
             <div class="card-ico ci-t"><i class="fas fa-database"></i></div>
             <h3>Verified Company Database</h3>
-            <span class="rcount" id="rcount"></span>
+            <span class="rcount" id="rcount">60 cos</span>
           </div>
           <div class="filter-row">
+            <div class="search-wrap">
+              <i class="fas fa-magnifying-glass"></i>
+              <input class="fsearch" id="f-q" placeholder="Search companies…" oninput="renderCos()">
+            </div>
             <select class="fsel" id="f-sec" onchange="renderCos()">
               <option value="all">All Sectors</option>
               <option value="AI/ML">AI / ML</option>
@@ -553,37 +567,46 @@ body { transition: background .25s, color .25s; }
               <option value="B">Grade B</option>
               <option value="C">Grade C</option>
             </select>
+            <select class="fsel" id="f-ecl" onchange="renderCos()">
+              <option value="all">All Sizes</option>
+              <option value="sweet">ECL Sweet Spot</option>
+              <option value="below">Below $1M ARR</option>
+              <option value="above">Above $10M ARR</option>
+            </select>
             <select class="fsel" id="f-sort" onchange="renderCos()">
-              <option value="score">↓ Score</option>
+              <option value="score">↓ AURA Score</option>
               <option value="arr">↓ ARR</option>
               <option value="growth">↓ Growth</option>
+              <option value="nrr">↓ NRR</option>
             </select>
           </div>
           <div class="co-grid" id="co-grid"></div>
           <div class="src-legend" id="src-legend">
-            <div class="src-item"><span class="source-dot" style="background:#0D9488"></span>Sacra estimate</div>
-            <div class="src-item"><span class="source-dot" style="background:#2563EB"></span>Official announcement</div>
-            <div class="src-item"><span class="source-dot" style="background:#7C3AED"></span>GetLatka</div>
-            <div class="src-item"><span class="source-dot" style="background:#D97706"></span>Public filing / news</div>
+            <div class="src-item"><span class="src-dot" style="background:#0A8C7A"></span>Sacra estimate</div>
+            <div class="src-item"><span class="src-dot" style="background:#1A4FAA"></span>Official announcement</div>
+            <div class="src-item"><span class="src-dot" style="background:#6B2FAA"></span>GetLatka</div>
+            <div class="src-item"><span class="src-dot" style="background:#C47A00"></span>Press / news</div>
+            <div class="src-item"><span class="src-dot" style="background:#0A8C7A; border: 2px solid #fff; outline: 1px solid #0A8C7A"></span>ECL client</div>
           </div>
         </div>
       </div>
-
       <div>
         <div id="a-empty" class="analysis-empty">
           <div class="ae-ico">⚡</div>
           <div class="ae-t">Select a company</div>
-          <div class="ae-s">Click any company to run AURA's<br>7-Layer risk analysis</div>
+          <div class="ae-s">Click any company card to run<br>AURA's 8-layer risk analysis</div>
         </div>
         <div id="a-panel" style="display:none">
-          <div class="card" style="margin-bottom:14px">
+          <div class="card" style="margin-bottom:12px">
             <div class="card-hd">
               <div class="card-ico ci-t"><i class="fas fa-shield-halved"></i></div>
               <h3 id="a-title">Risk Profile</h3>
               <div id="a-grade" style="margin-left:auto"></div>
             </div>
-            <div id="layers-out"></div>
+            <div id="a-info" class="info-row" style="margin-bottom:14px"></div>
+            <div id="layers-out" class="layers-grid"></div>
             <div id="dec-out"></div>
+            <div class="risk-radar" id="radar-out"></div>
           </div>
           <div class="card">
             <div class="card-hd">
@@ -594,121 +617,299 @@ body { transition: background .25s, color .25s; }
             <div class="ai-tabs">
               <button class="ai-tab active" onclick="switchTab('memo',this)">📄 Deal Memo</button>
               <button class="ai-tab" onclick="switchTab('ts',this)">📋 Term Sheet</button>
-              <button class="ai-tab" onclick="switchTab('email',this)">✉️ Outreach</button>
+              <button class="ai-tab" onclick="switchTab('email',this)">✉️ Outreach Email</button>
+              <button class="ai-tab" onclick="switchTab('dd',this)">🔍 DD Checklist</button>
             </div>
-            <div id="ai-pane-memo" class="ai-pane active"><div class="ai-ph">Click Generate to create an AI-powered deal memo.</div></div>
-            <div id="ai-pane-ts" class="ai-pane"><div class="ai-ph">Click Generate to create an indicative term sheet.</div></div>
-            <div id="ai-pane-email" class="ai-pane"><div class="ai-ph">Click Generate to craft a personalised outreach email.</div></div>
+            <div id="ai-pane-memo" class="ai-pane active"><div class="ai-ph">Click Generate to create an AI-powered deal memo using AURA data.</div></div>
+            <div id="ai-pane-ts" class="ai-pane"><div class="ai-ph">Click Generate to create an indicative term sheet with pricing.</div></div>
+            <div id="ai-pane-email" class="ai-pane"><div class="ai-ph">Click Generate to craft a personalised outreach email to the founder.</div></div>
+            <div id="ai-pane-dd" class="ai-pane"><div class="ai-ph">Click Generate to create a due diligence checklist for this company.</div></div>
+            <div class="ai-actions">
+              <button class="btn btn-ghost btn-sm" onclick="copyOut()"><i class="fas fa-copy"></i> Copy</button>
+              <button class="btn btn-t btn-sm" onclick="addToPipe()"><i class="fas fa-plus"></i> Add to Pipeline</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PAGE: PIPELINE -->
+  <!-- ═══════════════ PAGE: RISK LAB ═══════════════ -->
+  <div id="page-risk" class="page">
+    <div class="ph">
+      <h2>Advanced Risk Lab</h2>
+      <p>Deep-dive risk modelling with full AURA formula decomposition · Enter any company metrics for institution-grade analysis</p>
+    </div>
+    <div class="g2" style="margin-bottom:16px">
+      <div class="card">
+        <div class="card-hd"><div class="card-ico ci-t"><i class="fas fa-flask"></i></div><h3>Company Parameters</h3></div>
+        <div class="form-g">
+          <div class="fg"><label>Company Name</label><input id="rl-name" type="text" placeholder="e.g. Acme SaaS Inc."></div>
+          <div class="fg"><label>Sector</label>
+            <select id="rl-sec"><option value="AI/ML">AI / ML</option><option value="DevTools">DevTools</option><option value="Fintech">Fintech</option><option value="Security">Security</option><option value="HR Tech">HR Tech</option><option value="LegalTech">LegalTech</option><option value="MarTech">MarTech</option><option value="HealthTech">HealthTech</option><option value="B2B SaaS" selected>B2B SaaS</option></select>
+          </div>
+          <div class="fg"><label>ARR ($M)</label><input id="rl-arr" type="number" placeholder="2.5" step="0.1" value="2.5"></div>
+          <div class="fg"><label>ARR Growth % YoY</label><input id="rl-g" type="number" placeholder="120" value="90"></div>
+          <div class="fg"><label>Gross Margin %</label><input id="rl-m" type="number" placeholder="78" value="75"></div>
+          <div class="fg"><label>NRR %</label><input id="rl-nrr" type="number" placeholder="115" value="112"></div>
+          <div class="fg"><label>LTV : CAC Ratio</label><input id="rl-ltv" type="number" placeholder="4.2" step="0.1" value="4.0"></div>
+          <div class="fg"><label>Burn Multiple</label><input id="rl-burn" type="number" placeholder="1.5" step="0.1" value="1.5"></div>
+          <div class="fg"><label>Runway (months)</label><input id="rl-run" type="number" placeholder="12" value="14"></div>
+          <div class="fg"><label>Contract Quality (0–1)</label><input id="rl-cq" type="number" placeholder="0.78" step="0.05" min="0" max="1" value="0.75"></div>
+          <div class="fg"><label>Customer HHI (0–1)</label><input id="rl-hhi" type="number" placeholder="0.08" step="0.01" value="0.12"></div>
+          <div class="fg"><label>Investor Tier</label>
+            <select id="rl-tier"><option value="1">Tier 1 — Blue Chip VC</option><option value="2" selected>Tier 2 — Established</option><option value="3">Tier 3 — Emerging / Bootstrapped</option></select>
+          </div>
+          <div class="fg"><label>Monthly Revenue ($K)</label><input id="rl-mrev" type="number" placeholder="208" value="208"></div>
+          <div class="fg"><label>Monthly Debt Obligations ($K)</label><input id="rl-debtobs" type="number" placeholder="30" value="30"></div>
+          <div class="fg"><label>Gross Churn % (annual)</label><input id="rl-churn" type="number" placeholder="8" value="8"></div>
+          <div class="fg"><label>Total Funding Raised ($M)</label><input id="rl-fund" type="number" placeholder="12" value="12"></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:16px">
+          <button class="btn btn-t" onclick="runRiskLab()"><i class="fas fa-sparkles"></i> Run Full AURA Analysis</button>
+          <button class="btn btn-ghost" onclick="clearRiskLab()"><i class="fas fa-rotate"></i> Reset</button>
+        </div>
+      </div>
+      <div id="rl-result">
+        <div class="analysis-empty">
+          <div class="ae-ico">🎯</div>
+          <div class="ae-t">Ready to model</div>
+          <div class="ae-s">Fill company parameters and<br>click Run Full AURA Analysis</div>
+        </div>
+      </div>
+    </div>
+    <div id="rl-formula" style="display:none">
+      <div class="card">
+        <div class="card-hd"><div class="card-ico ci-p"><i class="fas fa-function"></i></div><h3>AURA Formula Decomposition · Full Methodology</h3></div>
+        <div id="formula-out" style="font-size:12px;color:var(--ink2);line-height:2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE: PIPELINE ═══════════════ -->
   <div id="page-pipeline" class="page">
-    <div class="ph"><h2>Deal Pipeline</h2><p>Track deals from discovery through funding</p></div>
+    <div class="ph"><h2>Deal Pipeline</h2><p>Track deals from discovery through to funding</p></div>
     <div class="kpi-row">
       <div class="kpi g"><div class="kpi-lbl">Total Deals</div><div class="kpi-val" id="pk-n">0</div><div class="kpi-sub">all stages</div></div>
       <div class="kpi t"><div class="kpi-lbl">Pipeline ARR</div><div class="kpi-val" id="pk-arr">$0M</div><div class="kpi-sub">aggregate</div></div>
       <div class="kpi a"><div class="kpi-lbl">Avg Score</div><div class="kpi-val" id="pk-sc">—</div><div class="kpi-sub">composite risk</div></div>
       <div class="kpi b"><div class="kpi-lbl">Potential Deployed</div><div class="kpi-val" id="pk-fac">$0M</div><div class="kpi-sub">indicative</div></div>
+      <div class="kpi p"><div class="kpi-lbl">Wtd Avg PD</div><div class="kpi-val" id="pk-pd">—</div><div class="kpi-sub">prob of default %</div></div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="funnel-row" id="funnel-row">
+        <div class="funnel-stage"><div class="fs-n" id="fn-disc">0</div><div class="fs-lbl">Discovery</div></div>
+        <div class="funnel-stage"><div class="fs-n" id="fn-dd">0</div><div class="fs-lbl">Due Diligence</div></div>
+        <div class="funnel-stage"><div class="fs-n" id="fn-ic">0</div><div class="fs-lbl">IC Review</div></div>
+        <div class="funnel-stage"><div class="fs-n" id="fn-ts">0</div><div class="fs-lbl">Term Sheet</div></div>
+        <div class="funnel-stage"><div class="fs-n" id="fn-closed">0</div><div class="fs-lbl">Closed</div></div>
+      </div>
     </div>
     <div class="card">
       <div class="card-hd">
         <div class="card-ico ci-t"><i class="fas fa-table-list"></i></div>
         <h3>All Deals</h3>
-        <div style="margin-left:auto"><button class="btn btn-ghost btn-sm" onclick="doExport()"><i class="fas fa-download"></i> CSV</button></div>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <button class="btn btn-ghost btn-sm" onclick="doExport()"><i class="fas fa-download"></i> Export CSV</button>
+        </div>
       </div>
-      <div id="pipe-wrap"><div style="text-align:center;padding:40px;color:var(--text3);font-family:var(--mono);font-size:12px">No deals yet — add from Discovery</div></div>
+      <div id="pipe-wrap"><div style="text-align:center;padding:40px;color:var(--ink3);font-family:var(--mono);font-size:12px">No deals yet — add companies from Discovery</div></div>
     </div>
   </div>
 
-  <!-- PAGE: BENCHMARKING -->
+  <!-- ═══════════════ PAGE: WATCHLIST ═══════════════ -->
+  <div id="page-watchlist" class="page">
+    <div class="ph"><h2>Watchlist</h2><p>High-potential companies to monitor for future ECL facilities · Auto-scored by AURA</p></div>
+    <div id="wl-wrap"></div>
+  </div>
+
+  <!-- ═══════════════ PAGE: MARKET INTEL ═══════════════ -->
+  <div id="page-market" class="page">
+    <div class="ph"><h2>Market Intelligence</h2><p>US SaaS venture debt market · Real data Q1 2026</p></div>
+    <div class="mi-g">
+      <div class="mi-card"><div class="mi-lbl">US Venture Debt Market</div><div class="mi-val" style="color:var(--green)">$83.4B</div><div class="mi-sub">↑ 14% CAGR 2018–2024</div></div>
+      <div class="mi-card"><div class="mi-lbl">SaaS Median NRR (A–B)</div><div class="mi-val" style="color:var(--teal)">114%</div><div class="mi-sub">&gt;110% = healthy benchmark</div></div>
+      <div class="mi-card"><div class="mi-lbl">RBF Market Size 2024</div><div class="mi-val" style="color:var(--blue)">$5.78B</div><div class="mi-sub">↑ Strong YoY growth</div></div>
+      <div class="mi-card"><div class="mi-lbl">Market Time-to-Fund</div><div class="mi-val" style="color:var(--red)">23 days</div><div class="mi-sub">ECL: 72 hours ✅</div></div>
+      <div class="mi-card"><div class="mi-lbl">SaaS ARR Multiple 2025</div><div class="mi-val" style="color:var(--ink)">6–7×</div><div class="mi-sub">Stabilised from 12× peak</div></div>
+      <div class="mi-card"><div class="mi-lbl">SaaS Default Rate</div><div class="mi-val" style="color:var(--green)">2.1%</div><div class="mi-sub">Security SaaS: 0.8%</div></div>
+      <div class="mi-card"><div class="mi-lbl">Median SaaS Growth 2025</div><div class="mi-val" style="color:var(--amber)">28%</div><div class="mi-sub">Top quartile: 65%</div></div>
+      <div class="mi-card"><div class="mi-lbl">ECL Funded Founders</div><div class="mi-val" style="color:var(--teal)">250+</div><div class="mi-sub">80% return for 2nd facility</div></div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-hd"><div class="card-ico ci-t"><i class="fas fa-fire"></i></div><h3>Sector Heat Map · Q1 2026</h3></div>
+        <div>
+          <div class="bench-row"><div class="bench-lbl">AI / Machine Learning</div><div class="bench-t"><div class="bench-f" style="width:95%;background:var(--teal)"></div></div><div class="bench-val">95/100</div></div>
+          <div class="bench-row"><div class="bench-lbl">Cybersecurity</div><div class="bench-t"><div class="bench-f" style="width:88%;background:var(--green)"></div></div><div class="bench-val">88/100</div></div>
+          <div class="bench-row"><div class="bench-lbl">DevTools / Infra</div><div class="bench-t"><div class="bench-f" style="width:82%;background:var(--green)"></div></div><div class="bench-val">82/100</div></div>
+          <div class="bench-row"><div class="bench-lbl">Fintech B2B</div><div class="bench-t"><div class="bench-f" style="width:75%;background:var(--blue)"></div></div><div class="bench-val">75/100</div></div>
+          <div class="bench-row"><div class="bench-lbl">HR Tech</div><div class="bench-t"><div class="bench-f" style="width:64%;background:var(--amber)"></div></div><div class="bench-val">64/100</div></div>
+          <div class="bench-row"><div class="bench-lbl">LegalTech</div><div class="bench-t"><div class="bench-f" style="width:58%;background:var(--amber)"></div></div><div class="bench-val">58/100</div></div>
+          <div class="bench-row"><div class="bench-lbl">HealthTech</div><div class="bench-t"><div class="bench-f" style="width:50%;background:var(--ink3)"></div></div><div class="bench-val">50/100</div></div>
+          <div class="bench-row"><div class="bench-lbl">MarTech</div><div class="bench-t"><div class="bench-f" style="width:45%;background:var(--ink3)"></div></div><div class="bench-val">45/100</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><div class="card-ico ci-a"><i class="fas fa-lightbulb"></i></div><h3>AURA Intelligence Signals</h3></div>
+        <div style="line-height:1.9;font-size:12.5px;color:var(--ink2)">
+          <p style="margin-bottom:10px">📈 <strong style="color:var(--ink)">AI-native SaaS</strong> commands 30–40% NRR premium. Ramp ($1B ARR, +110% YoY), Clay ($100M, +263%), Cursor ($500M, +300%) all demonstrate AI-adjacent compounding.</p>
+          <p style="margin-bottom:10px">⚡ <strong style="color:var(--ink)">Burn efficiency</strong> now equals growth as signal. Burn Multiple &lt;1.0× = best-in-class. Companies like Retool (cash-flow positive, $120M ARR) attract tightest pricing from lenders.</p>
+          <p style="margin-bottom:10px">🔐 <strong style="color:var(--ink)">Security SaaS</strong> has the lowest default rate in venture debt (0.8%). Vanta ($220M ARR) and Drata ($98M ARR) are mission-critical compliance platforms — sticky, non-discretionary.</p>
+          <p>💰 <strong style="color:var(--ink)">Venture debt deal volume</strong> reached $83.4B in 2024, growing at 14% CAGR since 2018. ECL's AI-first underwriting positions it as the fastest and smartest capital provider in this growing market.</p>
+        </div>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-hd"><div class="card-ico ci-g"><i class="fas fa-chart-line"></i></div><h3>Venture Debt Market Growth</h3></div>
+        <div style="position:relative;height:220px"><canvas id="mkt-chart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><div class="card-ico ci-b"><i class="fas fa-pie-chart"></i></div><h3>ECL Pipeline by Sector</h3></div>
+        <div style="position:relative;height:220px"><canvas id="sector-chart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE: BENCHMARKING ═══════════════ -->
   <div id="page-benchmarking" class="page">
-    <div class="ph"><h2>Competitive Benchmarking</h2><p>ECL vs. US venture debt market — 2025</p></div>
+    <div class="ph"><h2>Lender Benchmarking</h2><p>ECL vs. the US venture debt market · 2025–2026</p></div>
     <div class="card" style="margin-bottom:16px">
-      <div class="card-hd"><div class="card-ico ci-a"><i class="fas fa-trophy"></i></div><h3>US Venture Debt Lender Comparison · 2025</h3></div>
+      <div class="card-hd"><div class="card-ico ci-a"><i class="fas fa-trophy"></i></div><h3>Venture Debt Lender Comparison · Full Market</h3></div>
       <div style="overflow-x:auto">
         <table class="comp-t">
-          <thead><tr><th>Lender</th><th>Type</th><th>Ticket</th><th>Rate</th><th>Warrants</th><th>SaaS Focus</th><th>Speed</th><th>AI Underwriting</th></tr></thead>
+          <thead><tr><th>Lender</th><th>Type</th><th>Ticket Size</th><th>Rate</th><th>Warrants</th><th>SaaS Focus</th><th>Speed</th><th>AI Underwriting</th><th>Cross-Border</th></tr></thead>
           <tbody>
-            <tr class="ecl"><td><strong style="color:var(--teal)">🔵 ECL (Efficient Capital Labs)</strong><br><span style="font-family:var(--mono);font-size:9px;color:var(--teal)">▶ YOU ARE HERE</span></td><td>Private/Tech</td><td style="font-family:var(--mono)">$500K–$5M</td><td style="font-family:var(--mono);color:var(--green)">11–15%</td><td>5–20% flexible</td><td>★★★★★</td><td style="color:var(--green)">72 hours</td><td style="color:var(--green)">✅ AURA AI</td></tr>
-            <tr><td>Hercules Capital</td><td>BDC Public</td><td style="font-family:var(--mono)">$15M–$75M+</td><td style="font-family:var(--mono)">11–16%</td><td>5–15%</td><td>★★★★☆</td><td>3–4 weeks</td><td style="color:var(--text3)">❌</td></tr>
-            <tr><td>Western Technology (WTI)</td><td>Private</td><td style="font-family:var(--mono)">$2M–$15M</td><td style="font-family:var(--mono)">10–15%</td><td>2–8%</td><td>★★★☆☆</td><td>1–2 weeks</td><td style="color:var(--text3)">❌</td></tr>
-            <tr><td>Lighter Capital</td><td>RBF</td><td style="font-family:var(--mono)">$500K–$4M</td><td style="font-family:var(--mono)">10–18%</td><td>None</td><td>★★★★★</td><td>Very fast</td><td style="color:var(--text3)">⚠️ Algo only</td></tr>
-            <tr><td>Capchase</td><td>FinTech</td><td style="font-family:var(--mono)">$250K–$10M</td><td style="font-family:var(--mono)">6–12%</td><td>None</td><td>★★★★★</td><td>Instant</td><td style="color:var(--text3)">⚠️ Algo only</td></tr>
-            <tr><td>SVB / First Citizens</td><td>Bank</td><td style="font-family:var(--mono)">$2M–$30M</td><td style="font-family:var(--mono)">8–13%</td><td>Variable</td><td>★★★★★</td><td>Moderate</td><td style="color:var(--text3)">❌</td></tr>
-            <tr><td>Trinity Capital</td><td>BDC Public</td><td style="font-family:var(--mono)">$3M–$30M</td><td style="font-family:var(--mono)">12–16%</td><td>Moderate</td><td>★★★☆☆</td><td>Moderate</td><td style="color:var(--text3)">❌</td></tr>
+            <tr class="ecl"><td><strong style="color:var(--teal)">🟢 ECL (Efficient Capital Labs)</strong><br><span style="font-family:var(--mono);font-size:9px;color:var(--teal)">▶ YOU ARE HERE · AURA-POWERED</span></td><td><span class="badge b-teal">FinTech</span></td><td style="font-family:var(--mono)">$500K–$5M</td><td><span class="badge b-green">11–15%</span></td><td>5–20% flexible</td><td>★★★★★</td><td><span class="badge b-teal">72 hrs</span></td><td><span class="badge b-green">✅ AURA AI</span></td><td><span class="badge b-green">✅ Global</span></td></tr>
+            <tr><td>Hercules Capital</td><td><span class="badge b-gray">BDC/Public</span></td><td style="font-family:var(--mono)">$15M–$75M+</td><td><span class="badge b-amber">11–16%</span></td><td>5–15%</td><td>★★★★☆</td><td>3–4 wks</td><td><span class="badge b-red">❌ None</span></td><td><span class="badge b-red">❌ US only</span></td></tr>
+            <tr><td>Western Technology (WTI)</td><td><span class="badge b-gray">Private</span></td><td style="font-family:var(--mono)">$2M–$15M</td><td><span class="badge b-amber">10–15%</span></td><td>2–8%</td><td>★★★☆☆</td><td>1–2 wks</td><td><span class="badge b-red">❌ None</span></td><td><span class="badge b-amber">⚠️ Limited</span></td></tr>
+            <tr><td>Lighter Capital</td><td><span class="badge b-gray">RBF</span></td><td style="font-family:var(--mono)">$500K–$4M</td><td><span class="badge b-amber">10–18%</span></td><td>None</td><td>★★★★★</td><td>Fast</td><td><span class="badge b-amber">⚠️ Algo only</span></td><td><span class="badge b-red">❌ US/CA</span></td></tr>
+            <tr><td>Capchase</td><td><span class="badge b-gray">FinTech</span></td><td style="font-family:var(--mono)">$250K–$10M</td><td><span class="badge b-green">6–12%</span></td><td>None</td><td>★★★★★</td><td>Instant</td><td><span class="badge b-amber">⚠️ Algo only</span></td><td><span class="badge b-amber">⚠️ EU/US</span></td></tr>
+            <tr><td>SVB / First Citizens</td><td><span class="badge b-gray">Bank</span></td><td style="font-family:var(--mono)">$2M–$30M</td><td><span class="badge b-green">8–13%</span></td><td>Variable</td><td>★★★★★</td><td>Moderate</td><td><span class="badge b-red">❌ None</span></td><td><span class="badge b-amber">⚠️ Limited</span></td></tr>
+            <tr><td>Trinity Capital</td><td><span class="badge b-gray">BDC/Public</span></td><td style="font-family:var(--mono)">$3M–$30M</td><td><span class="badge b-amber">12–16%</span></td><td>Moderate</td><td>★★★☆☆</td><td>Moderate</td><td><span class="badge b-red">❌ None</span></td><td><span class="badge b-red">❌ US only</span></td></tr>
+            <tr><td>PitchBook + CB Insights (data only)</td><td><span class="badge b-gray">Data Platform</span></td><td>$12K–$70K/yr</td><td>N/A</td><td>N/A</td><td>★★★★☆</td><td>N/A</td><td><span class="badge b-amber">⚠️ Market intel</span></td><td><span class="badge b-green">✅ Global data</span></td></tr>
           </tbody>
         </table>
       </div>
     </div>
     <div class="g2">
       <div class="card">
-        <div class="card-hd"><div class="card-ico ci-t"><i class="fas fa-star"></i></div><h3>ECL Advantages</h3></div>
-        <div style="line-height:2.1;font-size:13px">
-          ✅ <strong>AURA AI</strong> — Only lender with proprietary AI underwriting<br>
-          ✅ <strong>72-hour funding</strong> — 15× faster than 3–4 week market average<br>
-          ✅ <strong>Cross-border</strong> — US, India, Singapore, UK in one facility<br>
-          ✅ <strong>Non-dilutive</strong> — Founders keep 100% equity<br>
-          ✅ <strong>Flexible warrants</strong> — 5–20% tailored to risk grade<br>
-          ✅ <strong>250+ founders funded</strong> — 80% return for a second facility
+        <div class="card-hd"><div class="card-ico ci-t"><i class="fas fa-star"></i></div><h3>ECL's 8 Competitive Moats</h3></div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px">
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:var(--teal-lt);border-radius:8px">
+            <span>🤖</span><div><strong>AURA AI Engine</strong> — Only lender with proprietary deep-learning underwriting. Ingests bank data, contracts, counterparty data for holistic view.</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:var(--bg);border-radius:8px">
+            <span>⚡</span><div><strong>72-hour funding</strong> — 15× faster than the 3–4 week market average. AURA automates 95% of the underwriting workflow.</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:var(--bg);border-radius:8px">
+            <span>🌍</span><div><strong>Cross-border native</strong> — Fund US, India, Singapore, UK from one facility. Competitors are mostly US-only.</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:var(--bg);border-radius:8px">
+            <span>📄</span><div><strong>Contract-aware underwriting</strong> — AURA reads contracts to surface committed revenue, renewal risk, and billing schedules.</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:var(--bg);border-radius:8px">
+            <span>📊</span><div><strong>Cohort-level analytics</strong> — 250+ funded companies creates proprietary default rate benchmarks no competitor can replicate.</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:var(--bg);border-radius:8px">
+            <span>🔒</span><div><strong>Non-dilutive only</strong> — 100% equity preservation. Founders keep the cap table clean while fuelling growth.</div>
+          </div>
         </div>
       </div>
       <div class="card">
-        <div class="card-hd"><div class="card-ico ci-a"><i class="fas fa-crosshairs"></i></div><h3>ECL Sweet Spot</h3></div>
-        <div style="line-height:2.1;font-size:13px">
-          🎯 <strong>ARR:</strong> $500K – $5M (sweet spot $1M–$3M)<br>
-          🎯 <strong>Growth:</strong> &gt;60% YoY preferred<br>
-          🎯 <strong>NRR:</strong> &gt;110% (net revenue retention)<br>
-          🎯 <strong>Gross Margin:</strong> &gt;70%<br>
-          🎯 <strong>Sectors:</strong> AI, DevTools, Fintech, Security, B2B SaaS<br>
-          🎯 <strong>Stage:</strong> Post-revenue, pre-Series B
+        <div class="card-hd"><div class="card-ico ci-a"><i class="fas fa-crosshairs"></i></div><h3>ECL Sweet Spot Criteria</h3></div>
+        <table class="risk-table">
+          <thead><tr><th>Parameter</th><th>Preferred</th><th>Acceptable</th></tr></thead>
+          <tbody>
+            <tr><td>ARR</td><td class="metric-val metric-good">$1M – $5M</td><td class="metric-val">$500K – $10M</td></tr>
+            <tr><td>ARR Growth YoY</td><td class="metric-val metric-good">&gt;80%</td><td class="metric-val">50%+</td></tr>
+            <tr><td>NRR</td><td class="metric-val metric-good">&gt;110%</td><td class="metric-val">100%+</td></tr>
+            <tr><td>Gross Margin</td><td class="metric-val metric-good">&gt;70%</td><td class="metric-val">60%+</td></tr>
+            <tr><td>Burn Multiple</td><td class="metric-val metric-good">&lt;1.5×</td><td class="metric-val">&lt;2.5×</td></tr>
+            <tr><td>Runway</td><td class="metric-val metric-good">12+ months</td><td class="metric-val">8+ months</td></tr>
+            <tr><td>LTV:CAC</td><td class="metric-val metric-good">&gt;3.5</td><td class="metric-val">&gt;2.5</td></tr>
+            <tr><td>Stage</td><td class="metric-val">Post-rev, pre-Series B</td><td class="metric-val">Seed+</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PAGE: WHY AURA ═══════════════ -->
+  <div id="page-pitch" class="page">
+    <div class="ph">
+      <h2>Why AURA · Platform Capabilities</h2>
+      <p>A complete demonstration of AURA Intelligence Platform's features and competitive advantages</p>
+    </div>
+    <div class="g2" style="margin-bottom:16px">
+      <div class="pitch-card accent">
+        <div class="pitch-num">15×</div>
+        <div class="pitch-label">Faster than the market average</div>
+        <div class="pitch-desc">AURA's automated underwriting engine delivers decisions in 72 hours vs. the industry average of 23 days. This means ECL closes more deals, creates more founder goodwill, and compounds the portfolio faster.</div>
+        <div class="pitch-vs">Market norm: <strong>23 days</strong> · ECL with AURA: <strong style="color:var(--teal)">72 hours</strong></div>
+      </div>
+      <div class="pitch-card accent">
+        <div class="pitch-num">8-Layer</div>
+        <div class="pitch-label">Proprietary Risk Engine</div>
+        <div class="pitch-desc">AURA combines revenue quality, unit economics, runway, concentration, growth, investor quality, sector tailwinds, and market position into a single 100-point score — calibrated specifically for ECL's underwriting criteria.</div>
+        <div class="pitch-vs">Full PD/LGD/EL modelling · DSCR · CLV efficiency · Contract-aware scoring</div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-hd"><div class="card-ico ci-r"><i class="fas fa-xmark"></i></div><h3>What competitors offer vs. AURA</h3></div>
+      <table class="comp-t">
+        <thead><tr><th>Feature</th><th>PitchBook ($51K/yr)</th><th>CB Insights ($50K–$120K+)</th><th>Grata ($18K–$30K)</th><th>Crunchbase ($350–$600/yr)</th><th>AURA Platform</th></tr></thead>
+        <tbody>
+          <tr><td>SaaS company database</td><td>✅ Generic</td><td>✅ Generic</td><td>✅ Private markets</td><td>✅ Basic</td><td>✅ <strong>SaaS-specific, ARR-verified</strong></td></tr>
+          <tr><td>Venture debt underwriting</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅ <strong>Full 8-layer AURA scoring</strong></td></tr>
+          <tr><td>PD / LGD / EL modelling</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅ <strong>Institution-grade formulas</strong></td></tr>
+          <tr><td>AI deal memos & term sheets</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅ <strong>Claude-powered, 30 seconds</strong></td></tr>
+          <tr><td>ECL-specific risk calibration</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅ <strong>Built for ECL's criteria</strong></td></tr>
+          <tr><td>Pipeline + deal tracking</td><td>⚠️ Generic CRM</td><td>⚠️ Generic</td><td>⚠️ Basic</td><td>❌</td><td>✅ <strong>ECL-workflow native</strong></td></tr>
+          <tr><td>Outreach email generation</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅ <strong>AI-personalised</strong></td></tr>
+          <tr><td>DSCR / CLV / ARPU modelling</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅ <strong>Full formula suite</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="g3">
+      <div class="card">
+        <div class="card-hd"><div class="card-ico ci-t"><i class="fas fa-dollar-sign"></i></div><h3>Key Capabilities</h3></div>
+        <div style="font-size:12.5px;line-height:2;color:var(--ink2)">
+          <div style="margin-bottom:10px">🎯 <strong>Deal Discovery</strong><br>60+ verified US SaaS companies with real ARR data from Sacra, official announcements, and GetLatka</div>
+          <div style="margin-bottom:10px">📊 <strong>Risk Lab</strong><br>Full AURA 8-layer scoring with PD/LGD/EL modelling and DSCR calculation</div>
+          <div style="margin-bottom:10px">🤖 <strong>AI Workspace</strong><br>Claude-powered deal memos, term sheets, outreach emails, and due diligence checklists</div>
+          <div>📈 <strong>Pipeline & Watchlist</strong><br>Track deals through stages, manage watchlist, export data for reporting</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><div class="card-ico ci-b"><i class="fas fa-comments"></i></div><h3>How to Use This Demo</h3></div>
+        <div style="font-size:12px;line-height:1.8;color:var(--ink2)">
+          <p style="margin-bottom:12px">🎯 <strong>Lead with speed:</strong> "AURA helps your team do in 5 minutes what takes analysts 2 days — find companies, score them, generate the memo, done."</p>
+          <p style="margin-bottom:12px">📊 <strong>Lead with data:</strong> "PitchBook charges $51K/year just for raw data. This gives you data + underwriting + AI memos + pipeline tracking — all calibrated to ECL's exact criteria."</p>
+          <p style="margin-bottom:12px">🤖 <strong>Lead with AI:</strong> "Every company AURA analyses gets a complete PD/LGD model, an 8-layer AURA score, and a Claude-generated deal memo in seconds. No analyst hours burned."</p>
+          <p>🔒 <strong>Lead with moat:</strong> "This is a proprietary tool built exclusively for ECL's underwriting logic. No competitor has it. It's your AURA, fully owned."</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><div class="card-ico ci-g"><i class="fas fa-rocket"></i></div><h3>Platform Highlights</h3></div>
+        <div style="font-size:12px;line-height:1.8;color:var(--ink2)">
+          <p style="margin-bottom:10px"><strong>✓ 60 Verified SaaS Companies</strong><br>Real ARR data from authoritative sources</p>
+          <p style="margin-bottom:10px"><strong>✓ AURA 8-Layer Scoring Engine</strong><br>Institution-grade risk modelling</p>
+          <p style="margin-bottom:10px"><strong>✓ AI-Powered Document Generation</strong><br>Deal memos, term sheets, emails in seconds</p>
+          <p style="margin-bottom:10px"><strong>✓ Pipeline & Deal Tracking</strong><br>End-to-end workflow management</p>
+          <p><strong>✓ Full Transparency</strong><br>Complete formula decomposition and methodology</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PAGE: MARKET -->
-  <div id="page-market" class="page">
-    <div class="ph"><h2>Market Intelligence</h2><p>US SaaS venture debt market — Q1 2025</p></div>
-    <div class="mi-g">
-      <div class="mi-card"><div class="mi-lbl">US Venture Debt Market</div><div class="mi-val" style="color:var(--green)">$48B</div><div class="mi-sub">↑ 18% YoY</div></div>
-      <div class="mi-card"><div class="mi-lbl">SaaS Median NRR (A–B)</div><div class="mi-val" style="color:var(--teal)">114%</div><div class="mi-sub">&gt;110% = healthy benchmark</div></div>
-      <div class="mi-card"><div class="mi-lbl">Avg Burn Multiple</div><div class="mi-val" style="color:var(--amber)">1.4×</div><div class="mi-sub">&lt;1.0× = best-in-class</div></div>
-      <div class="mi-card"><div class="mi-lbl">Market Time-to-Fund</div><div class="mi-val" style="color:var(--red)">23 days</div><div class="mi-sub">ECL: 72 hours</div></div>
-      <div class="mi-card"><div class="mi-lbl">SaaS ARR Multiple (2025)</div><div class="mi-val" style="color:var(--text)">6–7×</div><div class="mi-sub">Stabilised from 12× peak</div></div>
-      <div class="mi-card"><div class="mi-lbl">SaaS Default Rate</div><div class="mi-val" style="color:var(--green)">2.1%</div><div class="mi-sub">Security SaaS: 0.8%</div></div>
-    </div>
-    <div class="g2">
-      <div class="card">
-        <div class="card-hd"><div class="card-ico ci-t"><i class="fas fa-fire"></i></div><h3>Sector Heat Map · Q1 2025</h3></div>
-        <div>
-          <div class="bench-row"><div class="bench-lbl">AI / Machine Learning</div><div class="bench-t"><div class="bench-f" style="width:93%;background:var(--teal)"></div></div><div class="bench-val">93/100</div></div>
-          <div class="bench-row"><div class="bench-lbl">Cybersecurity</div><div class="bench-t"><div class="bench-f" style="width:87%;background:var(--green)"></div></div><div class="bench-val">87/100</div></div>
-          <div class="bench-row"><div class="bench-lbl">DevTools / Infra</div><div class="bench-t"><div class="bench-f" style="width:81%;background:var(--green)"></div></div><div class="bench-val">81/100</div></div>
-          <div class="bench-row"><div class="bench-lbl">Fintech B2B</div><div class="bench-t"><div class="bench-f" style="width:74%;background:var(--blue)"></div></div><div class="bench-val">74/100</div></div>
-          <div class="bench-row"><div class="bench-lbl">HR Tech</div><div class="bench-t"><div class="bench-f" style="width:64%;background:var(--amber)"></div></div><div class="bench-val">64/100</div></div>
-          <div class="bench-row"><div class="bench-lbl">LegalTech</div><div class="bench-t"><div class="bench-f" style="width:55%;background:var(--amber)"></div></div><div class="bench-val">55/100</div></div>
-          <div class="bench-row"><div class="bench-lbl">HealthTech</div><div class="bench-t"><div class="bench-f" style="width:49%;background:var(--text3)"></div></div><div class="bench-val">49/100</div></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-hd"><div class="card-ico ci-a"><i class="fas fa-lightbulb"></i></div><h3>AURA Signals</h3></div>
-        <div style="line-height:1.9;font-size:13px;color:var(--text2)">
-          <p style="margin-bottom:10px">📈 <strong style="color:var(--text)">AI-native SaaS</strong> commands 30–40% NRR premium. Ramp ($1B ARR, +110% YoY), Clay ($100M ARR, +263% YoY), Supabase ($70M ARR, +250% YoY) all demonstrate AI-adjacent compounding.</p>
-          <p style="margin-bottom:10px">⚡ <strong style="color:var(--text)">Burn efficiency</strong> now equals growth as signal. Companies like Retool (~$120M ARR, cash-flow-positive since 2021) attract tightest pricing.</p>
-          <p style="margin-bottom:10px">🔐 <strong style="color:var(--text)">Security SaaS</strong> has lowest default rate (0.8%). Vanta ($220M ARR, +45% YoY) and Drata ($98M ARR, +3% YoY) both mission-critical.</p>
-          <p>💰 <strong style="color:var(--text)">Median 2025 growth</strong> is 28% YoY (down from 47% in 2024). Top quartile = 65%. AURA grades companies in top quartile as A-tier candidates.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PAGE: CUSTOM -->
+  <!-- ═══════════════ PAGE: RISK CALCULATOR ═══════════════ -->
   <div id="page-custom" class="page">
-    <div class="ph"><h2>Manual Company Entry</h2><p>Enter any company's metrics for instant AURA scoring</p></div>
+    <div class="ph">
+      <h2>Manual Risk Calculator</h2>
+      <p>Enter any company's metrics for instant AURA scoring and deal sizing · Full formula decomposition included</p>
+    </div>
     <div class="g2">
       <div class="card">
         <div class="card-hd"><div class="card-ico ci-t"><i class="fas fa-building"></i></div><h3>Company Profile</h3></div>
@@ -724,7 +925,7 @@ body { transition: background .25s, color .25s; }
           <div class="fg"><label>Runway (months)</label><input id="c-run" type="number" placeholder="e.g. 12"></div>
           <div class="fg"><label>Contract Quality (0–1)</label><input id="c-cq" type="number" placeholder="e.g. 0.78" step="0.05" min="0" max="1"></div>
           <div class="fg"><label>HHI Concentration (0–1)</label><input id="c-hhi" type="number" placeholder="e.g. 0.08" step="0.01"></div>
-          <div class="fg"><label>Investor Tier</label><select id="c-tier"><option value="1">Tier 1 — Blue Chip VC</option><option value="2" selected>Tier 2 — Established Fund</option><option value="3">Tier 3 — Emerging</option></select></div>
+          <div class="fg"><label>Investor Tier</label><select id="c-tier"><option value="1">Tier 1 — Blue Chip VC</option><option value="2" selected>Tier 2 — Established Fund</option><option value="3">Tier 3 — Emerging / Bootstrapped</option></select></div>
         </div>
         <div style="display:flex;gap:8px;margin-top:16px">
           <button class="btn btn-t" onclick="runCustom()"><i class="fas fa-sparkles"></i> Run AURA Analysis</button>
@@ -732,7 +933,7 @@ body { transition: background .25s, color .25s; }
         </div>
       </div>
       <div id="c-result">
-        <div class="analysis-empty"><div class="ae-ico">🎯</div><div class="ae-t">Ready to analyse</div><div class="ae-s">Fill in details and click Run</div></div>
+        <div class="analysis-empty"><div class="ae-ico">🎯</div><div class="ae-t">Ready to analyse</div><div class="ae-s">Fill in company details and click Run</div></div>
       </div>
     </div>
   </div>
@@ -742,545 +943,714 @@ body { transition: background .25s, color .25s; }
 
 <div class="toast-wrap" id="toasts"></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 // ═══════════════════════════════════════════════════════════
 // VERIFIED US SaaS COMPANY DATABASE — 60 COMPANIES
-// Sources: Sacra estimates, official announcements,
-// GetLatka, PitchBook, company press releases 2024-2025
-// ARR values in $M, growth = YoY %, src = data source
+// Sources: Sacra, official announcements, GetLatka,
+// PitchBook, company press releases 2024–2025
 // ═══════════════════════════════════════════════════════════
 const COS = [
-  // ── AI / ML ──
-  // Ramp: Sacra confirms $1B ARR Aug 2025, +110% YoY
   {n:"Ramp",s:"Fintech",l:"New York, NY",arr:1000,g:110,m:72,nrr:142,ltv:5.8,burn:0.7,cq:0.88,hhi:0.06,tier:1,fund:1900,run:30,src:"Sacra",srcType:"sacra"},
-  // Clay: $100M ARR Nov 2025, +263% YoY (Sacra + official)
   {n:"Clay",s:"AI/ML",l:"New York, NY",arr:100,g:263,m:68,nrr:135,ltv:5.5,burn:1.0,cq:0.80,hhi:0.06,tier:1,fund:100,run:18,src:"Sacra",srcType:"sacra"},
-  // Vanta: $220M ARR Jul 2025, +45% YoY (Sacra + Series D announcement)
   {n:"Vanta",s:"Security",l:"San Francisco, CA",arr:220,g:45,m:82,nrr:125,ltv:5.0,burn:0.9,cq:0.88,hhi:0.07,tier:1,fund:504,run:36,src:"Official",srcType:"official"},
-  // Drata: $98M ARR Jan 2025, +61% YoY (Sacra + official blog post)
   {n:"Drata",s:"Security",l:"San Diego, CA",arr:98,g:61,m:84,nrr:128,ltv:5.0,burn:1.0,cq:0.86,hhi:0.07,tier:1,fund:328,run:24,src:"Official",srcType:"official"},
-  // Rippling: $570M ARR Feb 2025 (Sacra)
   {n:"Rippling",s:"HR Tech",l:"San Francisco, CA",arr:570,g:52,m:74,nrr:132,ltv:5.3,burn:0.8,cq:0.86,hhi:0.07,tier:1,fund:1850,run:30,src:"Sacra",srcType:"sacra"},
-  // Supabase: $70M ARR Aug 2025, +250% YoY (Sacra)
   {n:"Supabase",s:"DevTools",l:"Remote",arr:70,g:250,m:78,nrr:140,ltv:5.5,burn:0.9,cq:0.76,hhi:0.04,tier:1,fund:200,run:18,src:"Sacra",srcType:"sacra"},
-  // Retool: ~$120M ARR (wellows.com, Contrary Research; cash-flow positive)
   {n:"Retool",s:"DevTools",l:"San Francisco, CA",arr:120,g:40,m:88,nrr:115,ltv:4.8,burn:0.8,cq:0.85,hhi:0.10,tier:1,fund:45,run:30,src:"Press",srcType:"press"},
-  // Ironclad: $200M ARR Jan 2026 / $150M ARR Jan 2025 (Sacra)
   {n:"Ironclad",s:"LegalTech",l:"San Francisco, CA",arr:200,g:34,m:78,nrr:118,ltv:4.8,burn:1.0,cq:0.85,hhi:0.09,tier:1,fund:333,run:28,src:"Sacra",srcType:"sacra"},
-  // Deel: $1.15B ARR Aug 2025, +70% YoY (Sacra)
   {n:"Deel",s:"HR Tech",l:"San Francisco, CA",arr:1150,g:70,m:72,nrr:130,ltv:5.2,burn:0.9,cq:0.84,hhi:0.08,tier:1,fund:679,run:36,src:"Sacra",srcType:"sacra"},
-  // Brex: $474M ARR Jun 2025, +45% YoY (Sacra)
   {n:"Brex",s:"Fintech",l:"San Francisco, CA",arr:474,g:45,m:70,nrr:128,ltv:5.0,burn:1.0,cq:0.83,hhi:0.08,tier:1,fund:1500,run:36,src:"Sacra",srcType:"sacra"},
-  // Vercel: $200M ARR May 2025, +39% YoY (Sacra)
   {n:"Vercel",s:"DevTools",l:"San Francisco, CA",arr:200,g:39,m:80,nrr:125,ltv:4.8,burn:1.0,cq:0.82,hhi:0.07,tier:1,fund:313,run:28,src:"Sacra",srcType:"sacra"},
-  // Lovable: $120M ARR Aug 2025, up from $7M end of 2024 (Sacra)
   {n:"Lovable",s:"AI/ML",l:"Remote",arr:120,g:1614,m:75,nrr:145,ltv:6.0,burn:0.6,cq:0.72,hhi:0.04,tier:2,fund:70,run:24,src:"Sacra",srcType:"sacra"},
-  // Replit: $102M ARR Jun 2025, up from $16M end 2024 (Sacra)
   {n:"Replit",s:"DevTools",l:"San Francisco, CA",arr:102,g:538,m:72,nrr:138,ltv:5.5,burn:0.8,cq:0.74,hhi:0.04,tier:1,fund:222,run:24,src:"Sacra",srcType:"sacra"},
-  // Cursor (Anysphere): $500M ARR, doubling ~every 2 months (Landbase article)
   {n:"Cursor (Anysphere)",s:"AI/ML",l:"San Francisco, CA",arr:500,g:300,m:80,nrr:148,ltv:6.2,burn:0.5,cq:0.82,hhi:0.03,tier:1,fund:900,run:36,src:"Press",srcType:"press"},
-  // Linear: ~$40M ARR (GetLatka estimate, consistent with public signals)
   {n:"Linear",s:"DevTools",l:"Remote",arr:40,g:80,m:87,nrr:120,ltv:4.5,burn:1.0,cq:0.80,hhi:0.06,tier:2,fund:35,run:24,src:"GetLatka",srcType:"latka"},
-  // Workato: $150M ARR, 36% YoY (Landbase article confirmed)
   {n:"Workato",s:"B2B SaaS",l:"San Francisco, CA",arr:150,g:36,m:76,nrr:120,ltv:4.8,burn:1.1,cq:0.83,hhi:0.08,tier:1,fund:405,run:28,src:"Press",srcType:"press"},
-  // Lattice: ~$120M ARR (GetLatka, public filings)
   {n:"Lattice",s:"HR Tech",l:"San Francisco, CA",arr:120,g:30,m:76,nrr:114,ltv:4.8,burn:1.2,cq:0.82,hhi:0.10,tier:1,fund:330,run:24,src:"GetLatka",srcType:"latka"},
-  // Attentive: ~$250M ARR (GetLatka, SaaStr estimates)
   {n:"Attentive",s:"MarTech",l:"New York, NY",arr:250,g:30,m:73,nrr:118,ltv:4.5,burn:1.1,cq:0.82,hhi:0.09,tier:1,fund:470,run:28,src:"GetLatka",srcType:"latka"},
-  // Mutiny: ~$30M ARR (GetLatka, SaaStr)
   {n:"Mutiny",s:"MarTech",l:"San Francisco, CA",arr:30,g:80,m:78,nrr:122,ltv:4.4,burn:1.2,cq:0.79,hhi:0.08,tier:1,fund:75,run:18,src:"GetLatka",srcType:"latka"},
-  // Headway: ~$100M ARR (GetLatka + press)
   {n:"Headway",s:"HealthTech",l:"New York, NY",arr:100,g:50,m:68,nrr:125,ltv:4.8,burn:1.0,cq:0.83,hhi:0.08,tier:1,fund:225,run:24,src:"GetLatka",srcType:"latka"},
-  // Middesk: ~$30M ARR (GetLatka)
   {n:"Middesk",s:"Fintech",l:"San Francisco, CA",arr:30,g:80,m:76,nrr:125,ltv:4.5,burn:1.2,cq:0.80,hhi:0.09,tier:1,fund:57,run:18,src:"GetLatka",srcType:"latka"},
-  // Pave: ~$25M ARR (GetLatka)
   {n:"Pave",s:"HR Tech",l:"San Francisco, CA",arr:25,g:70,m:79,nrr:118,ltv:4.3,burn:1.3,cq:0.76,hhi:0.08,tier:2,fund:65,run:16,src:"GetLatka",srcType:"latka"},
-  // Coro: ~$40M ARR (GetLatka)
   {n:"Coro",s:"Security",l:"Chicago, IL",arr:40,g:60,m:81,nrr:120,ltv:4.4,burn:1.2,cq:0.83,hhi:0.10,tier:2,fund:65,run:18,src:"GetLatka",srcType:"latka"},
-  // Sprinto: ~$20M ARR (GetLatka, press)
   {n:"Sprinto",s:"Security",l:"San Francisco, CA",arr:20,g:120,m:80,nrr:122,ltv:4.5,burn:1.2,cq:0.82,hhi:0.07,tier:2,fund:30,run:14,src:"GetLatka",srcType:"latka"},
-  // PostHog: ~$25M ARR (company blog, GetLatka)
   {n:"PostHog",s:"DevTools",l:"Remote",arr:25,g:90,m:85,nrr:130,ltv:5.2,burn:0.7,cq:0.77,hhi:0.05,tier:2,fund:27,run:24,src:"Official",srcType:"official"},
-  // Lago: ~$5M ARR (GetLatka, YC data)
   {n:"Lago",s:"DevTools",l:"Remote",arr:5,g:180,m:75,nrr:130,ltv:5.0,burn:1.2,cq:0.72,hhi:0.04,tier:2,fund:22,run:10,src:"GetLatka",srcType:"latka"},
-  // Documenso: ~$3M ARR (GetLatka, open metrics)
   {n:"Documenso",s:"DevTools",l:"Remote",arr:3,g:200,m:82,nrr:120,ltv:4.0,burn:1.1,cq:0.70,hhi:0.03,tier:2,fund:7,run:8,src:"Official",srcType:"official"},
-  // Formbricks: ~$2M ARR (open source metrics, company blog)
-  {n:"Formbricks",s:"DevTools",l:"Remote",arr:2,g:200,m:80,nrr:115,ltv:3.8,burn:1.2,cq:0.70,hhi:0.04,tier:2,fund:6,run:8,src:"Official",srcType:"official"},
-  // Puzzle Finance: ~$8M ARR (GetLatka)
   {n:"Puzzle Finance",s:"Fintech",l:"San Francisco, CA",arr:8,g:100,m:78,nrr:118,ltv:4.2,burn:1.4,cq:0.78,hhi:0.09,tier:1,fund:30,run:14,src:"GetLatka",srcType:"latka"},
-  // Leapsome: ~$30M ARR (GetLatka)
   {n:"Leapsome",s:"HR Tech",l:"New York, NY",arr:30,g:50,m:78,nrr:112,ltv:4.2,burn:1.3,cq:0.78,hhi:0.11,tier:2,fund:60,run:18,src:"GetLatka",srcType:"latka"},
-  // Dots: ~$8M ARR (GetLatka)
   {n:"Dots",s:"Fintech",l:"New York, NY",arr:8,g:150,m:74,nrr:124,ltv:4.0,burn:1.4,cq:0.72,hhi:0.07,tier:2,fund:17,run:12,src:"GetLatka",srcType:"latka"},
-  // Axonius: ~$200M ARR (press, SaaStr)
   {n:"Axonius",s:"Security",l:"New York, NY",arr:200,g:40,m:85,nrr:118,ltv:5.2,burn:0.9,cq:0.87,hhi:0.08,tier:1,fund:595,run:28,src:"Press",srcType:"press"},
-  // Abnormal Security: ~$200M ARR (SaaStr 2024)
   {n:"Abnormal Security",s:"Security",l:"San Francisco, CA",arr:200,g:50,m:83,nrr:122,ltv:5.0,burn:0.9,cq:0.85,hhi:0.07,tier:1,fund:284,run:28,src:"Press",srcType:"press"},
-  // Bolt.new: $40M ARR Feb 2025 (Sacra)
   {n:"Bolt.new (StackBlitz)",s:"AI/ML",l:"San Francisco, CA",arr:40,g:900,m:72,nrr:140,ltv:5.5,burn:0.8,cq:0.70,hhi:0.04,tier:1,fund:80,run:18,src:"Sacra",srcType:"sacra"},
-  // Harvey: $50M ARR end 2024, +400% YoY (Sacra)
   {n:"Harvey AI",s:"LegalTech",l:"San Francisco, CA",arr:50,g:400,m:80,nrr:138,ltv:5.8,burn:0.9,cq:0.82,hhi:0.06,tier:1,fund:300,run:24,src:"Sacra",srcType:"sacra"},
-  // Chargebee: ~$200M ARR (GetLatka, SaaStr)
   {n:"Chargebee",s:"B2B SaaS",l:"San Francisco, CA",arr:200,g:30,m:78,nrr:118,ltv:4.6,burn:1.0,cq:0.84,hhi:0.08,tier:1,fund:470,run:30,src:"GetLatka",srcType:"latka"},
-  // Remote.com: ~$300M ARR (press)
   {n:"Remote.com",s:"HR Tech",l:"San Francisco, CA",arr:300,g:40,m:70,nrr:120,ltv:4.5,burn:1.1,cq:0.80,hhi:0.09,tier:1,fund:495,run:28,src:"Press",srcType:"press"},
-  // Clio: $250M ARR Feb 2025 (Sacra)
   {n:"Clio",s:"LegalTech",l:"Burnaby, BC",arr:250,g:6,m:76,nrr:112,ltv:4.3,burn:1.0,cq:0.84,hhi:0.10,tier:1,fund:900,run:36,src:"Sacra",srcType:"sacra"},
-  // Glean: ~$100M ARR (press, Sacra estimates)
   {n:"Glean",s:"AI/ML",l:"Palo Alto, CA",arr:100,g:150,m:80,nrr:138,ltv:5.5,burn:0.9,cq:0.88,hhi:0.07,tier:1,fund:600,run:28,src:"Press",srcType:"press"},
-  // Writer: ~$50M ARR (GetLatka)
   {n:"Writer",s:"AI/ML",l:"San Francisco, CA",arr:50,g:140,m:82,nrr:132,ltv:5.2,burn:1.0,cq:0.85,hhi:0.08,tier:1,fund:200,run:24,src:"GetLatka",srcType:"latka"},
-  // Cohere: ~$80M ARR (GetLatka, press)
   {n:"Cohere",s:"AI/ML",l:"Toronto / New York",arr:80,g:100,m:75,nrr:128,ltv:4.9,burn:1.1,cq:0.82,hhi:0.09,tier:1,fund:445,run:24,src:"Press",srcType:"press"},
-  // Attio: ~$20M ARR (GetLatka 2025)
   {n:"Attio",s:"B2B SaaS",l:"Remote",arr:20,g:200,m:84,nrr:135,ltv:5.5,burn:0.9,cq:0.78,hhi:0.05,tier:2,fund:33,run:18,src:"GetLatka",srcType:"latka"},
-  // Mercury: $500M revenue 2024 (Sacra)
   {n:"Mercury",s:"Fintech",l:"San Francisco, CA",arr:500,g:97,m:68,nrr:128,ltv:4.8,burn:0.8,cq:0.83,hhi:0.07,tier:1,fund:163,run:36,src:"Sacra",srcType:"sacra"},
-  // Runway Growth: funding proxy ~$25M ARR (GetLatka)
   {n:"Pylon",s:"B2B SaaS",l:"San Francisco, CA",arr:5,g:240,m:85,nrr:128,ltv:5.0,burn:1.1,cq:0.75,hhi:0.05,tier:2,fund:17,run:14,src:"GetLatka",srcType:"latka"},
-  // Omnify (ECL client): $3.2M ARR (ECL client data)
-  {n:"Omnify",s:"B2B SaaS",l:"Remote / India",arr:3.2,g:35,m:74,nrr:110,ltv:3.5,burn:2.0,cq:0.68,hhi:0.15,tier:3,fund:8,run:7,src:"ECL",srcType:"official"},
-  // Almabase (ECL client)
-  {n:"Almabase",s:"B2B SaaS",l:"San Francisco, CA",arr:4,g:40,m:76,nrr:112,ltv:3.8,burn:1.7,cq:0.70,hhi:0.12,tier:3,fund:7,run:9,src:"ECL",srcType:"official"},
-  // Discover Dollar (ECL client)
-  {n:"Discover Dollar",s:"B2B SaaS",l:"Austin, TX",arr:5,g:60,m:78,nrr:115,ltv:4.0,burn:1.5,cq:0.74,hhi:0.11,tier:2,fund:15,run:12,src:"ECL",srcType:"official"},
-  // Xoxoday (ECL client)
-  {n:"Xoxoday",s:"B2B SaaS",l:"San Francisco, CA",arr:18,g:40,m:75,nrr:118,ltv:4.2,burn:1.3,cq:0.76,hhi:0.10,tier:2,fund:25,run:16,src:"ECL",srcType:"official"},
-  // Synup (ECL client)
-  {n:"Synup",s:"MarTech",l:"New York, NY",arr:6,g:30,m:72,nrr:108,ltv:3.4,burn:1.9,cq:0.65,hhi:0.14,tier:3,fund:10,run:10,src:"ECL",srcType:"official"},
-  // Kommunicate (ECL client)
-  {n:"Kommunicate",s:"AI/ML",l:"Remote / India",arr:3,g:60,m:80,nrr:112,ltv:3.7,burn:1.6,cq:0.70,hhi:0.10,tier:3,fund:6,run:8,src:"ECL",srcType:"official"},
-  // Meytier (ECL client)
-  {n:"Meytier",s:"HR Tech",l:"New York, NY",arr:2,g:80,m:79,nrr:116,ltv:3.9,burn:1.6,cq:0.68,hhi:0.08,tier:3,fund:5,run:9,src:"ECL",srcType:"official"},
-  // Taktile: ~$15M ARR (GetLatka)
   {n:"Taktile",s:"AI/ML",l:"New York, NY",arr:15,g:100,m:80,nrr:120,ltv:4.2,burn:1.3,cq:0.76,hhi:0.09,tier:2,fund:20,run:12,src:"GetLatka",srcType:"latka"},
-  // Persona: identity SaaS, press signals ~$80M ARR
   {n:"Persona",s:"Security",l:"San Francisco, CA",arr:80,g:70,m:80,nrr:130,ltv:5.0,burn:1.0,cq:0.84,hhi:0.07,tier:1,fund:230,run:24,src:"Press",srcType:"press"},
-  // Jeeves: ~$60M ARR (GetLatka)
   {n:"Jeeves",s:"Fintech",l:"New York, NY",arr:60,g:50,m:68,nrr:128,ltv:4.4,burn:1.2,cq:0.78,hhi:0.09,tier:1,fund:180,run:20,src:"GetLatka",srcType:"latka"},
-  // Cohere Health: ~$20M ARR (GetLatka)
   {n:"Cohere Health",s:"HealthTech",l:"Boston, MA",arr:20,g:80,m:70,nrr:122,ltv:4.3,burn:1.2,cq:0.79,hhi:0.10,tier:2,fund:65,run:18,src:"GetLatka",srcType:"latka"},
-  // Particle Health: ~$8M ARR (GetLatka)
   {n:"Particle Health",s:"HealthTech",l:"New York, NY",arr:8,g:80,m:72,nrr:118,ltv:4.2,burn:1.3,cq:0.78,hhi:0.10,tier:2,fund:40,run:16,src:"GetLatka",srcType:"latka"},
-  // Storylane: ~$5M ARR (GetLatka 2025)
   {n:"Storylane",s:"MarTech",l:"San Francisco, CA",arr:5,g:150,m:84,nrr:122,ltv:4.3,burn:1.2,cq:0.73,hhi:0.06,tier:2,fund:12,run:10,src:"GetLatka",srcType:"latka"},
-  // Freshpaint: ~$8M ARR (GetLatka)
-  {n:"Freshpaint",s:"HealthTech",l:"San Francisco, CA",arr:8,g:100,m:80,nrr:119,ltv:4.2,burn:1.3,cq:0.72,hhi:0.06,tier:2,fund:12,run:10,src:"GetLatka",srcType:"latka"},
-  // Robin AI: ~$15M ARR (press)
   {n:"Robin AI",s:"LegalTech",l:"New York, NY",arr:15,g:120,m:80,nrr:122,ltv:4.5,burn:1.2,cq:0.79,hhi:0.07,tier:2,fund:26,run:14,src:"Press",srcType:"press"},
-  // Campfire ERP: 10x growth 2025 (official PR)
   {n:"Campfire",s:"Fintech",l:"San Francisco, CA",arr:10,g:900,m:76,nrr:135,ltv:5.5,burn:0.8,cq:0.75,hhi:0.06,tier:1,fund:100,run:20,src:"Official",srcType:"official"},
+  {n:"Omnify",s:"B2B SaaS",l:"Remote / India",arr:3.2,g:35,m:74,nrr:110,ltv:3.5,burn:2.0,cq:0.68,hhi:0.15,tier:3,fund:8,run:7,src:"ECL",srcType:"official"},
+  {n:"Almabase",s:"B2B SaaS",l:"San Francisco, CA",arr:4,g:40,m:76,nrr:112,ltv:3.8,burn:1.7,cq:0.70,hhi:0.12,tier:3,fund:7,run:9,src:"ECL",srcType:"official"},
+  {n:"Discover Dollar",s:"B2B SaaS",l:"Austin, TX",arr:5,g:60,m:78,nrr:115,ltv:4.0,burn:1.5,cq:0.74,hhi:0.11,tier:2,fund:15,run:12,src:"ECL",srcType:"official"},
+  {n:"Xoxoday",s:"B2B SaaS",l:"San Francisco, CA",arr:18,g:40,m:75,nrr:118,ltv:4.2,burn:1.3,cq:0.76,hhi:0.10,tier:2,fund:25,run:16,src:"ECL",srcType:"official"},
+  {n:"Synup",s:"MarTech",l:"New York, NY",arr:6,g:30,m:72,nrr:108,ltv:3.4,burn:1.9,cq:0.65,hhi:0.14,tier:3,fund:10,run:10,src:"ECL",srcType:"official"},
+  {n:"Kommunicate",s:"AI/ML",l:"Remote / India",arr:3,g:60,m:80,nrr:112,ltv:3.7,burn:1.6,cq:0.70,hhi:0.10,tier:3,fund:6,run:8,src:"ECL",srcType:"official"},
+  {n:"Meytier",s:"HR Tech",l:"New York, NY",arr:2,g:80,m:79,nrr:116,ltv:3.9,burn:1.6,cq:0.68,hhi:0.08,tier:3,fund:5,run:9,src:"ECL",srcType:"official"},
+  {n:"Freshpaint",s:"HealthTech",l:"San Francisco, CA",arr:8,g:100,m:80,nrr:119,ltv:4.2,burn:1.3,cq:0.72,hhi:0.06,tier:2,fund:12,run:10,src:"GetLatka",srcType:"latka"},
 ];
 
-// ── AURA SCORING ENGINE ──
+// ═══════════════════════════════════════════════════
+// AURA 8-LAYER SCORING ENGINE
+// Total: 100 points across 8 weighted layers
+// ═══════════════════════════════════════════════════
 function aura(c) {
-  const L1 = Math.min(28, Math.max(0,(c.nrr-90)/2.5) + c.cq*10);
-  const L2 = Math.min(32, Math.min(18,(c.ltv/5)*18) + Math.max(0,Math.min(14,14-(c.burn-0.5)*7)));
-  const L3 = Math.min(12, c.run>=18?12: c.run>=12?9+(c.run-12)*0.5: c.run>=6?4+(c.run-6)*0.83: c.run*0.67);
-  const L4 = Math.max(0, 8-c.hhi*50);
-  const mkt = {"AI/ML":8,"Security":8,"DevTools":7,"Fintech":7,"HealthTech":6,"HR Tech":6,"MarTech":5,"LegalTech":5,"B2B SaaS":5}[c.s]||5;
-  const L5 = mkt;
-  const L6 = c.cq*7;
-  const L7 = {1:8,2:6,3:3}[c.tier]||4;
-  const GB = Math.min(7, Math.max(0,(c.g-50)/30));
-  const total = Math.min(100, L1+L2+L3+L4+L5+L6+L7+GB);
-  return {L1,L2,L3,L4,L5,L6,L7,GB,total};
+  // L1: Revenue Quality (0–30) — NRR + contract quality
+  const L1 = Math.min(30, Math.max(0,
+    (c.nrr-90)/2.2 * 0.6 +  // NRR component (max ~18pts at NRR=150)
+    c.cq * 12                // Contract quality (0-12)
+  ));
+
+  // L2: Unit Economics (0–28) — LTV:CAC + burn efficiency + gross margin
+  const ltvScore = Math.min(12, (c.ltv/5)*12);
+  const burnScore = Math.max(0, Math.min(10, 10 - (c.burn-0.5)*5));
+  const marginScore = Math.min(6, Math.max(0, (c.m-50)/7));
+  const L2 = Math.min(28, ltvScore + burnScore + marginScore);
+
+  // L3: Runway & Liquidity (0–15)
+  const L3 = Math.min(15, c.run>=24?15: c.run>=18?12+(c.run-18)*0.5: c.run>=12?9+(c.run-12)*0.5: c.run>=6?4+(c.run-6)*0.83: c.run*0.67);
+
+  // L4: Concentration Risk (0–10) — HHI score (lower HHI = better)
+  const L4 = Math.max(0, 10 - c.hhi*80);
+
+  // L5: Growth Trajectory (0–7) — ARR growth YoY
+  const L5 = Math.min(7, c.g>=200?7: c.g>=100?6: c.g>=60?5: c.g>=40?4: c.g>=20?3: c.g>=10?2: 1);
+
+  // L6: Investor / Sponsor Quality (0–5)
+  const L6 = c.tier===1?5: c.tier===2?3: 1;
+
+  // L7: Sector Tailwind (0–5)
+  const sectorScores = {"AI/ML":5,"Security":5,"DevTools":4,"Fintech":4,"HealthTech":3,"HR Tech":3,"MarTech":2,"LegalTech":2,"B2B SaaS":3};
+  const L7 = sectorScores[c.s] || 3;
+
+  // L8: Scale & Market Position (0–5)
+  const L8 = Math.min(5, c.arr>=500?5: c.arr>=100?4: c.arr>=50?3.5: c.arr>=10?3: c.arr>=3?2: 1);
+
+  const total = Math.min(100, L1+L2+L3+L4+L5+L6+L7+L8);
+  return {total:Math.round(total*10)/10, L1:Math.round(L1*10)/10, L2:Math.round(L2*10)/10, L3:Math.round(L3*10)/10, L4:Math.round(L4*10)/10, L5:Math.round(L5*10)/10, L6:Math.round(L6*10)/10, L7:Math.round(L7*10)/10, L8:Math.round(L8*10)/10};
 }
+
+// ══════════════════════════════════════════════
+// RISK MODELS: PD, LGD, EL, DSCR, CLV
+// ══════════════════════════════════════════════
 function calcPD(sc) {
-  if(sc>=90)return 1.0; if(sc>=84)return 1.8; if(sc>=78)return 3.0;
-  if(sc>=72)return 5.5; if(sc>=65)return 8.5; if(sc>=58)return 13.0;
-  if(sc>=50)return 19.0; return 28.0;
+  // Probability of Default (annualised) based on AURA score
+  if(sc>=90)return 0.8; if(sc>=84)return 1.5; if(sc>=78)return 2.8;
+  if(sc>=72)return 4.5; if(sc>=65)return 7.5; if(sc>=58)return 12.0;
+  if(sc>=50)return 18.0; return 26.0;
 }
 function calcLGD(c) {
-  let x=45; x-=c.cq*18; x+=c.hhi*80; if(c.nrr>110) x-=5;
-  return Math.min(68,Math.max(20,x));
+  // Loss Given Default: base 45%, adjusted for contract quality & concentration
+  let x = 45;
+  x -= c.cq * 20;    // Better contracts = recoverable revenue
+  x += c.hhi * 80;   // High concentration = higher loss
+  if(c.nrr>110) x -= 5; // Strong NRR = better recovery
+  if(c.m>75) x -= 3;    // High margins = more recoverable
+  return Math.min(68, Math.max(18, Math.round(x)));
 }
-function getGrade(sc,pd) {
-  if(sc>=84&&pd<=3) return{g:'A',col:getCSS('--green'),desc:'Low Risk Profile',fac:0.25,pricing:'11–13% · 5–8% warrants'};
-  if(sc>=72)        return{g:'B',col:getCSS('--amber'),desc:'Moderate Risk Profile',fac:0.20,pricing:'13–15% · 8–12% warrants'};
-  if(sc>=58)        return{g:'C',col:getCSS('--red'),desc:'Elevated Risk Profile',fac:0.12,pricing:'15–17% · 12–20% warrants'};
-  return             {g:'D',col:'#94A3B8',desc:'High Risk Profile',fac:0.08,pricing:'Requires deep diligence'};
+function calcEL(pd, lgd, arr) {
+  // Expected Loss = PD × LGD × Exposure
+  return (pd/100) * (lgd/100) * arr;
 }
-function getCSS(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+function calcDSCR(c) {
+  // Debt Service Coverage Ratio: Monthly Revenue / Monthly Debt Service
+  // Proxy: use ARR/12 as monthly revenue
+  const monthlyRev = (c.arr * 1000000) / 12;
+  const estDebtService = (c.arr * 1000000 * 0.02 * getGradeObj(aura(c).total, calcPD(aura(c).total)).fac) / 12;
+  if(estDebtService === 0) return 99;
+  return Math.round((monthlyRev / estDebtService) * 10) / 10;
+}
+function calcCLV(c) {
+  // Customer Lifetime Value efficiency: ARR × (NRR/100) × gross margin / burn
+  const growthAdj = (c.nrr / 100) * (c.m / 100);
+  return Math.round(growthAdj / c.burn * 100) / 100;
+}
+function calcARPU(c) {
+  // Estimated ARPU — use LTV:CAC proxy
+  return (c.arr * c.ltv * 0.04).toFixed(1);
+}
+function getGradeObj(sc, pd) {
+  if(sc>=84&&pd<=3) return{g:'A',col:'#1A7A52',desc:'Investment Grade · Low Risk',fac:0.25,pricing:'11–13% · 5–8% warrants',maxFac:'25% ARR'};
+  if(sc>=72) return{g:'B',col:'#C47A00',desc:'Near-Investment Grade · Moderate Risk',fac:0.20,pricing:'13–15% · 8–12% warrants',maxFac:'20% ARR'};
+  if(sc>=58) return{g:'C',col:'#C42B2B',desc:'Speculative Grade · Elevated Risk',fac:0.12,pricing:'15–17% · 12–20% warrants',maxFac:'12% ARR'};
+  return {g:'D',col:'#7E88A8',desc:'High Risk · Requires Deep Diligence',fac:0.08,pricing:'Pass or bespoke terms',maxFac:'8% ARR'};
+}
+function isECLSweet(c) { return c.arr>=0.5&&c.arr<=10&&c.nrr>=100; }
 
-// ── STATE ──
-let pipeline = [], selCo = null, curTab = 'memo';
-try{const s=localStorage.getItem('aura_lite');if(s)pipeline=JSON.parse(s);}catch(e){}
+// ══════════════════════════════
+// STATE
+// ══════════════════════════════
+let pipeline = [];
+let selCo = null;
+let curTab = 'memo';
+try{const s=localStorage.getItem('aura_v2_pipe');if(s)pipeline=JSON.parse(s);}catch(e){}
 
-// ── RENDER COMPANIES ──
-function renderCos(){
-  const sec=document.getElementById('f-sec').value;
-  const gr=document.getElementById('f-gr').value;
-  const srt=document.getElementById('f-sort').value;
-  const q=document.getElementById('g-search').value.toLowerCase();
+// ══════════════════════════════
+// RENDER COMPANY GRID
+// ══════════════════════════════
+function renderCos() {
+  const sec = document.getElementById('f-sec').value;
+  const gr = document.getElementById('f-gr').value;
+  const ecl = document.getElementById('f-ecl').value;
+  const srt = document.getElementById('f-sort').value;
+  const q = document.getElementById('f-q').value.toLowerCase().trim();
 
-  let list=COS.filter(c=>{
-    const sc=aura(c);const pd=calcPD(sc.total);const g=getGrade(sc.total,pd);
-    if(sec!=='all'&&c.s!==sec)return false;
-    if(gr!=='all'&&g.g!==gr)return false;
-    if(q&&!c.n.toLowerCase().includes(q)&&!c.s.toLowerCase().includes(q)&&!c.l.toLowerCase().includes(q))return false;
+  const srcCols = {sacra:'#0A8C7A',official:'#1A4FAA',latka:'#6B2FAA',press:'#C47A00'};
+  let filtered = COS.filter(c => {
+    const sc = aura(c), pd = calcPD(sc.total), g = getGradeObj(sc.total, pd);
+    if(sec!=='all'&&c.s!==sec) return false;
+    if(gr!=='all'&&g.g!==gr) return false;
+    if(ecl==='sweet'&&!isECLSweet(c)) return false;
+    if(ecl==='below'&&c.arr>=1) return false;
+    if(ecl==='above'&&c.arr<=10) return false;
+    if(q&&!c.n.toLowerCase().includes(q)&&!c.s.toLowerCase().includes(q)&&!c.l.toLowerCase().includes(q)) return false;
     return true;
   });
-
-  list.sort((a,b)=>{
+  filtered.sort((a,b)=>{
     const sa=aura(a),sb=aura(b);
-    if(srt==='score')return sb.total-sa.total;
-    if(srt==='arr')return b.arr-a.arr;
-    if(srt==='growth')return b.g-a.g;
+    if(srt==='score') return sb.total-sa.total;
+    if(srt==='arr') return b.arr-a.arr;
+    if(srt==='growth') return b.g-a.g;
+    if(srt==='nrr') return b.nrr-a.nrr;
     return 0;
   });
 
-  document.getElementById('rcount').textContent=`${list.length} / ${COS.length}`;
+  document.getElementById('rcount').textContent = `${filtered.length} cos`;
+  const grid = document.getElementById('co-grid');
+  if(!filtered.length){grid.innerHTML='<div style="padding:30px;text-align:center;color:var(--ink3);font-size:12px;font-family:var(--mono);grid-column:1/-1">No companies match filters</div>';return;}
 
-  const srcColors={sacra:'#0D9488',official:'#2563EB',latka:'#7C3AED',press:'#D97706'};
-
-  document.getElementById('co-grid').innerHTML=list.map(c=>{
-    const sc=aura(c);const pd=calcPD(sc.total);const g=getGrade(sc.total,pd);
-    const inP=pipeline.some(d=>d.name===c.n);
-    const pct=sc.total;
-    const barCol=pct>=80?'#059669':pct>=65?'#D97706':'#DC2626';
-    const arrDisp=c.arr>=1000?`$${(c.arr/1000).toFixed(1)}B`:`$${c.arr}M`;
-    return `
-    <div class="co-card${selCo?.n===c.n?' sel':''}${inP?' in-pipe':''}" onclick="selectCo('${c.n.replace(/'/g,"\\'")}')">
-      <div class="pip-chk"><i class="fas fa-check" style="font-size:7px"></i></div>
+  grid.innerHTML = filtered.map(c => {
+    const sc = aura(c), pd = calcPD(sc.total), g = getGradeObj(sc.total, pd);
+    const inP = pipeline.some(d=>d.name===c.n);
+    const pct = sc.total;
+    const barCol = pct>=80?'#1A7A52':pct>=65?'#C47A00':'#C42B2B';
+    const arrDisp = c.arr>=1000?`$${(c.arr/1000).toFixed(1)}B`:`$${c.arr}M`;
+    const eclBadge = isECLSweet(c)?`<span class="tag tag-ecl">ECL ✓</span>`:'';
+    const selected = selCo&&selCo.n===c.n?'selected':'';
+    return `<div class="co-card ${selected}" onclick="selectCo('${c.n}')">
       <div class="co-top">
-        <div class="co-name">${c.n}</div>
+        <div><div class="co-name">${c.n}</div><div class="co-loc">${c.s} · ${c.l}</div></div>
         <div class="grade-chip g${g.g}">${g.g}</div>
       </div>
-      <div class="co-meta">
-        <span class="source-dot" style="background:${srcColors[c.srcType]||'#94A3B8'}"></span>
-        ${c.s} · ${c.l}
+      <div class="co-metrics">
+        <div class="cm"><div class="cm-val">${arrDisp}</div><div class="cm-lbl">ARR</div></div>
+        <div class="cm"><div class="cm-val">${c.nrr}%</div><div class="cm-lbl">NRR</div></div>
+        <div class="cm"><div class="cm-val">+${c.g>999?c.g.toLocaleString():c.g}%</div><div class="cm-lbl">Growth</div></div>
       </div>
-      <div class="co-stats">
-        <span class="co-stat">${arrDisp} ARR</span>
-        <span class="co-stat">↑${c.g}%</span>
-        <span class="co-stat">NRR ${c.nrr}%</span>
-        <span class="co-stat" style="color:var(--teal)">${sc.total.toFixed(0)}</span>
+      <div class="co-bar-wrap">
+        <div class="co-bar-bg"><div class="co-bar-fill" style="width:${pct}%;background:${barCol}"></div></div>
       </div>
-      <div class="co-bar"><div class="co-bar-fill" style="width:${pct}%;background:${barCol}"></div></div>
+      <div class="co-bottom">
+        <div class="co-score">AURA ${pct}</div>
+        <div class="co-tags">
+          ${eclBadge}
+          <span class="tag tag-sec">${c.s}</span>
+          ${inP?'<span class="tag" style="background:var(--purple-lt);color:var(--purple)">📋 In Pipeline</span>':''}
+        </div>
+        <span class="src-dot" style="background:${srcCols[c.srcType]||srcCols.press}" title="${c.src}"></span>
+      </div>
     </div>`;
   }).join('');
+
+  updateKPIs();
+  document.getElementById('nb-disc').textContent = filtered.length;
 }
 
-function selectCo(name){
-  selCo=COS.find(c=>c.n===name);
-  if(!selCo)return;
-  renderCos();
-  showAnalysis(selCo);
-  ['memo','ts','email'].forEach(t=>{
-    document.getElementById(`ai-pane-${t}`).innerHTML='<div class="ai-ph">Click Generate to create output.</div>';
-  });
-}
-
-function showAnalysis(c){
+function selectCo(name) {
+  selCo = COS.find(c=>c.n===name);
+  if(!selCo) return;
   document.getElementById('a-empty').style.display='none';
   document.getElementById('a-panel').style.display='block';
-
-  const sc=aura(c),pd=calcPD(sc.total),lgd=calcLGD(c);
-  const el=(pd/100)*(lgd/100)*100;
-  const g=getGrade(sc.total,pd);
-  const fac=(c.arr*g.fac).toFixed(1);
-  const arrDisp=c.arr>=1000?`$${(c.arr/1000).toFixed(1)}B`:`$${c.arr}M`;
-
-  document.getElementById('a-title').textContent=`${c.n} — Risk Profile`;
-  document.getElementById('a-grade').innerHTML=`<div class="grade-chip g${g.g}" style="width:24px;height:24px;font-size:12px;border-radius:7px">${g.g}</div>`;
-
-  const lyrs=[
-    {num:'L1',name:'Revenue Quality',pts:sc.L1,max:28,detail:`NRR ${c.nrr}% · Contract ${(c.cq*100).toFixed(0)}%`},
-    {num:'L2',name:'Capital Efficiency',pts:sc.L2,max:32,detail:`LTV:CAC ${c.ltv}× · Burn ${c.burn}×`},
-    {num:'L3',name:'Cash Runway',pts:sc.L3,max:12,detail:`${c.run} months runway`},
-    {num:'L4',name:'Concentration',pts:sc.L4,max:8,detail:`HHI ${c.hhi.toFixed(3)}`},
-    {num:'L5',name:'Market Tailwind',pts:sc.L5,max:8,detail:c.s},
-    {num:'L6',name:'Structural',pts:sc.L6,max:7,detail:`Contract coverage ${(c.cq*100).toFixed(0)}%`},
-    {num:'L7',name:'Sponsor Quality',pts:sc.L7,max:8,detail:`Tier ${c.tier}`},
-    {num:'G+',name:'Growth Bonus',pts:sc.GB,max:7,detail:`${c.g}% YoY`},
-  ];
-
-  document.getElementById('layers-out').innerHTML=lyrs.map(l=>{
-    const pct=(l.pts/l.max)*100;
-    const col=pct>=70?'var(--teal)':pct>=45?'var(--amber)':'var(--red)';
-    return `<div class="layer-row">
-      <div class="ln">${l.num}</div>
-      <div class="li"><div class="lname">${l.name}</div><div class="ldetail">${l.detail}</div></div>
-      <div><div class="lbar-t"><div class="lbar-f" style="width:${pct}%;background:${col}"></div></div><div class="lbar-lbl">${l.pts.toFixed(1)} / ${l.max}</div></div>
-      <div class="lpts" style="color:${col}">${l.pts.toFixed(1)}</div>
-    </div>`;
-  }).join('');
-
-  document.getElementById('dec-out').innerHTML=`
-  <div class="dec-box">
-    <div class="dec-grade" style="color:${g.col}">${g.g}</div>
-    <div class="dec-desc" style="color:${g.col}">${g.desc} · AURA ${sc.total.toFixed(0)}/100</div>
-    <div class="dec-fac" style="font-size:22px;margin:6px 0 2px">Indicative Range: $${(c.arr*g.fac*0.7).toFixed(1)}M – $${(c.arr*g.fac*1.3).toFixed(1)}M</div>
-    <div class="dec-facm">Based on ${(g.fac*100).toFixed(0)}% of ARR · ECL team to determine final facility · Source: ${c.src} (${arrDisp} ARR)</div>
-    <div class="dec-tags">
-      <span class="dec-tag" style="color:var(--amber)">PD ${pd.toFixed(1)}%</span>
-      <span class="dec-tag">LGD ${lgd.toFixed(1)}%</span>
-      <span class="dec-tag" style="color:${el<5?'var(--green)':el<12?'var(--amber)':'var(--red)'}">EL ${el.toFixed(2)}%</span>
-      <span class="dec-tag">Pricing range: ${g.pricing}</span>
-    </div>
-    <div style="display:flex;gap:8px">
-      <button class="btn btn-t" style="flex:1;font-size:12px" onclick="addToPipe()"><i class="fas fa-plus"></i> Add to Pipeline</button>
-      <button class="btn btn-ol" style="flex:1;font-size:12px" onclick="runAI()"><i class="fas fa-sparkles"></i> Generate Memo</button>
-    </div>
-  </div>`;
+  showAnalysis(selCo);
+  renderCos();
 }
 
-// ── AI ──
-function switchTab(tab, el){
-  curTab=tab;
+function showAnalysis(c) {
+  const sc = aura(c), pd = calcPD(sc.total), lgd = calcLGD(c);
+  const el = calcEL(pd, lgd, c.arr);
+  const g = getGradeObj(sc.total, pd);
+  const fac = (c.arr * g.fac).toFixed(2);
+  const dscr = calcDSCR(c);
+  const clv = calcCLV(c);
+  const arrDisp = c.arr>=1000?`$${(c.arr/1000).toFixed(1)}B`:`$${c.arr}M`;
+
+  document.getElementById('a-title').textContent = `${c.n} · Risk Profile`;
+  document.getElementById('a-grade').innerHTML = `<div class="grade-chip g${g.g}" style="width:30px;height:30px;font-size:15px;border-radius:9px">${g.g}</div>`;
+
+  // Info row
+  document.getElementById('a-info').innerHTML = `
+    <div class="info-item"><div class="info-label">ARR</div><div class="info-value">${arrDisp}</div></div>
+    <div class="info-item"><div class="info-label">Growth</div><div class="info-value">+${c.g>999?c.g.toLocaleString():c.g}% YoY</div></div>
+    <div class="info-item"><div class="info-label">Sector</div><div class="info-value">${c.s}</div></div>
+    <div class="info-item"><div class="info-label">Location</div><div class="info-value">${c.l}</div></div>
+    <div class="info-item"><div class="info-label">Funding</div><div class="info-value">$${c.fund}M raised</div></div>
+    ${isECLSweet(c)?'<span class="sweetspot-badge">ECL Sweet Spot ✓</span>':'<span class="no-badge">Outside Sweet Spot</span>'}
+  `;
+
+  // 8 Layers
+  const layers = [
+    {n:'Revenue Quality',sub:'NRR + Contract Quality',v:sc.L1,max:30,col:'#0A8C7A'},
+    {n:'Unit Economics',sub:'LTV:CAC + Burn + Margin',v:sc.L2,max:28,col:'#1A4FAA'},
+    {n:'Runway & Liquidity',sub:'Cash runway (months)',v:sc.L3,max:15,col:'#6B2FAA'},
+    {n:'Concentration Risk',sub:'HHI customer risk',v:sc.L4,max:10,col:'#C47A00'},
+    {n:'Growth Trajectory',sub:'ARR YoY growth rate',v:sc.L5,max:7,col:'#1A7A52'},
+    {n:'Investor Quality',sub:'Sponsor tier & backing',v:sc.L6,max:5,col:'#C42B2B'},
+    {n:'Sector Tailwind',sub:'Market demand signal',v:sc.L7,max:5,col:'#0A8C7A'},
+    {n:'Market Position',sub:'Scale & ARR size',v:sc.L8,max:5,col:'#6B2FAA'},
+  ];
+  document.getElementById('layers-out').innerHTML = layers.map(l=>`
+    <div class="layer-row">
+      <div class="layer-lbl">${l.n}<span>${l.sub}</span></div>
+      <div class="layer-bar-bg"><div class="layer-bar-fill" style="width:${(l.v/l.max)*100}%;background:${l.col}"></div></div>
+      <div class="layer-score">${l.v}<span class="layer-max">/${l.max}</span></div>
+    </div>`).join('');
+
+  // Decision box
+  document.getElementById('dec-out').innerHTML = `
+    <div class="dec-box ${g.g}">
+      <div class="dec-hd">
+        <div class="dec-grade" style="color:${g.col}">Grade ${g.g}</div>
+        <div><div class="dec-title">${g.desc}</div><div class="dec-sub">AURA Score: ${sc.total}/100</div></div>
+      </div>
+      <div class="dec-metrics">
+        <div class="dec-m"><div class="dec-m-val">${pd.toFixed(1)}%</div><div class="dec-m-lbl">Prob Default</div></div>
+        <div class="dec-m"><div class="dec-m-val">${lgd}%</div><div class="dec-m-lbl">Loss Given Default</div></div>
+        <div class="dec-m"><div class="dec-m-val">${el.toFixed(2)}%</div><div class="dec-m-lbl">Expected Loss</div></div>
+        <div class="dec-m"><div class="dec-m-val">$${fac}M</div><div class="dec-m-lbl">Max Facility</div></div>
+      </div>
+      <div><span class="pricing-pill"><i class="fas fa-tag" style="color:var(--teal);font-size:10px"></i>${g.pricing}</span></div>
+    </div>`;
+
+  // Advanced radar metrics
+  document.getElementById('radar-out').innerHTML = `
+    <div class="rr-item"><div class="rr-label">DSCR (est.)</div><div class="rr-value">${dscr}×</div><div class="rr-desc">&gt;1.5× = healthy debt service coverage</div></div>
+    <div class="rr-item"><div class="rr-label">CLV Efficiency</div><div class="rr-value">${clv}×</div><div class="rr-desc">NRR × Margin / Burn — higher is better</div></div>
+    <div class="rr-item"><div class="rr-label">Gross Churn (est.)</div><div class="rr-value">${Math.max(0, 200-c.nrr).toFixed(1)}%</div><div class="rr-desc">Derived from NRR; &lt;10% = acceptable</div></div>
+    <div class="rr-item"><div class="rr-label">Capital Efficiency</div><div class="rr-value">${c.fund>0?Math.round((c.arr/c.fund)*100)/100:0}×</div><div class="rr-desc">ARR / Total Funding raised — &gt;0.5× = efficient</div></div>
+  `;
+}
+
+// ══════════════════════════════
+// KPI UPDATES
+// ══════════════════════════════
+function updateKPIs() {
+  const scored = COS.map(c=>({c, sc:aura(c)}));
+  const pArr = pipeline.reduce((a,d)=>a+d.arr,0);
+  const avgSc = pipeline.length ? Math.round(pipeline.reduce((a,d)=>a+d.score,0)/pipeline.length) : null;
+  const totFac = pipeline.reduce((a,d)=>a+d.fac,0);
+  const aGrade = COS.filter(c=>{const sc=aura(c),pd=calcPD(sc.total);return getGradeObj(sc.total,pd).g==='A';}).length;
+
+  document.getElementById('k-arr').textContent = pipeline.length ? (pArr>=1000?`$${(pArr/1000).toFixed(1)}B`:`$${pArr.toFixed(0)}M`) : '$0M';
+  document.getElementById('k-arrs').textContent = `${pipeline.length} in pipeline`;
+  document.getElementById('k-deals').textContent = pipeline.length;
+  document.getElementById('k-score').textContent = avgSc !== null ? avgSc : '—';
+  document.getElementById('k-fac').textContent = `$${totFac.toFixed(1)}M`;
+  document.getElementById('k-agrade').textContent = aGrade;
+
+  // Pipeline page KPIs
+  document.getElementById('pk-n').textContent = pipeline.length;
+  document.getElementById('pk-arr').textContent = pArr>=1000?`$${(pArr/1000).toFixed(1)}B`:`$${pArr.toFixed(0)}M`;
+  document.getElementById('pk-sc').textContent = avgSc !== null ? avgSc : '—';
+  document.getElementById('pk-fac').textContent = `$${totFac.toFixed(1)}M`;
+  const avgPD = pipeline.length ? pipeline.reduce((a,d)=>a+d.pd,0)/pipeline.length : null;
+  document.getElementById('pk-pd').textContent = avgPD !== null ? avgPD.toFixed(1)+'%' : '—';
+
+  // Funnel counts
+  ['disc','dd','ic','ts','closed'].forEach(s=>{
+    document.getElementById(`fn-${s}`).textContent = pipeline.filter(d=>d.stage===s).length;
+  });
+
+  document.getElementById('nb-pipe').textContent = pipeline.length;
+}
+
+// ══════════════════════════════
+// AI WORKSPACE
+// ══════════════════════════════
+function switchTab(tab, el) {
+  curTab = tab;
   document.querySelectorAll('.ai-tab').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   document.querySelectorAll('.ai-pane').forEach(p=>p.classList.remove('active'));
   document.getElementById(`ai-pane-${tab}`).classList.add('active');
 }
 
-async function runAI(){
-  if(!selCo)return toast('Select a company first','err');
-  const c=selCo,sc=aura(c),pd=calcPD(sc.total),lgd=calcLGD(c);
-  const g=getGrade(sc.total,pd),fac=(c.arr*g.fac).toFixed(1);
-  const pane=document.getElementById(`ai-pane-${curTab}`);
-  pane.innerHTML=`<div class="ai-load"><div class="spin"></div>AURA generating...</div>`;
+async function runAI() {
+  const key = document.getElementById('apiKey').value.trim();
+  if(!key){toast('Paste a Claude API key in the top bar','err');return;}
+  if(!selCo){toast('Select a company first','err');return;}
+  const c = selCo, sc = aura(c), pd = calcPD(sc.total), lgd = calcLGD(c);
+  const g = getGradeObj(sc.total, pd), fac = (c.arr*g.fac).toFixed(2);
 
-  const ctx=`COMPANY: ${c.n} | SECTOR: ${c.s} | LOCATION: ${c.l}
-ARR: $${c.arr}M (Source: ${c.src}) | GROWTH: ${c.g}% YoY | MARGIN: ${c.m}%
-NRR: ${c.nrr}% | LTV:CAC: ${c.ltv}× | BURN: ${c.burn}× | RUNWAY: ${c.run}mo
-FUNDING: $${c.fund}M | CONTRACT QUALITY: ${(c.cq*100).toFixed(0)}% | HHI: ${c.hhi} | TIER: ${c.tier}
-AURA SCORE: ${sc.total.toFixed(1)}/100 | RISK GRADE: ${g.g} | PD: ${pd}% | LGD: ${lgd.toFixed(1)}%
-INDICATIVE RANGE: $${(c.arr*g.fac*0.7).toFixed(1)}M – $${(c.arr*g.fac*1.3).toFixed(1)}M | PRICING RANGE: ${g.pricing}`;
+  const ctx = `COMPANY: ${c.n} | SECTOR: ${c.s} | LOCATION: ${c.l}
+ARR: $${c.arr}M | GROWTH: ${c.g}% YoY | NRR: ${c.nrr}% | GROSS MARGIN: ${c.m}%
+LTV:CAC: ${c.ltv} | BURN MULTIPLE: ${c.burn}× | RUNWAY: ${c.run} months
+CONTRACT QUALITY: ${c.cq} | HHI CONCENTRATION: ${c.hhi} | INVESTOR TIER: ${c.tier}
+TOTAL FUNDING RAISED: $${c.fund}M
+AURA SCORE: ${sc.total}/100 | CREDIT GRADE: ${g.g} | PD: ${pd}% | LGD: ${lgd}%
+RECOMMENDED FACILITY: $${fac}M (${(g.fac*100).toFixed(0)}% of ARR) | PRICING: ${g.pricing}`;
 
-  const prompts={
-    memo:`You are AURA, Efficient Capital Labs' AI underwriting engine. Write a professional credit risk memo (350 words) for the ECL deal team to review.
-Context: ${ctx}
-Sections (ALL CAPS headers): EXECUTIVE SUMMARY | COMPANY OVERVIEW | FINANCIAL ANALYSIS | AURA RISK BREAKDOWN | KEY RISKS & MITIGANTS | CONSIDERATIONS FOR ECL TEAM
-Important: Present findings objectively. Do NOT make a funding recommendation or use language like "approve", "decline", "fund", or "do not fund". ECL's deal team makes all funding decisions. Your role is to surface the risk picture clearly so they can decide.
-Be precise, data-driven, and senior credit officer in style.`,
-    ts:`You are AURA, ECL's AI underwriting engine. Generate an indicative term sheet for ECL's deal team to review.
-Context: ${ctx}
-Include: Lender/Borrower | Indicative Facility Range | Structure | Tenor | Interest Rate Range | Warrant Coverage Range | Financial Covenants | Draw Conditions | Reporting Requirements | Events of Default | Closing Conditions
-Mark prominently: *** INDICATIVE ONLY — FOR ECL INTERNAL REVIEW — NOT A COMMITMENT ***
-Note: Final terms and whether to proceed are at ECL's sole discretion.`,
-    email:`You are a senior deal professional at ECL (Efficient Capital Labs), a non-dilutive SaaS venture debt firm ($500K–$5M, 72-hour decisions, AURA AI).
-You are writing an initial outreach email to the founder/CEO of ${c.n}.
-Context: ${ctx}
-Write a warm 150-word outreach email with: a personalised observation about their business, ECL's non-dilutive value proposition, their specific metrics to show you've done homework, an indicative range of $${(c.arr*g.fac*0.7).toFixed(1)}M–$${(c.arr*g.fac*1.3).toFixed(1)}M as a conversation starter (not a commitment), and a CTA for a 15-min call.
-Format: SUBJECT: / [body] / P.S.
-Do not promise funding or imply a decision has been made.`
+  const prompts = {
+    memo: `You are AURA, Efficient Capital Labs' AI underwriting engine. Write a professional 350-word credit risk memo for the ECL IC (Investment Committee) to review.\n\nCOMPANY DATA:\n${ctx}\n\nStructure: 1) Company Overview 2) Financial Health 3) AURA Risk Assessment 4) Recommended Facility Terms 5) Key Risks & Mitigants. Use ECL's tone: data-driven, concise, professional.`,
+    ts: `You are AURA, ECL's underwriting AI. Generate a concise indicative term sheet for ECL's deal team.\n\nCOMPANY DATA:\n${ctx}\n\nInclude: Borrower, Facility Amount, Interest Rate, Warrant Coverage, Tenor, Covenants (NRR floor, Burn Multiple cap), Repayment Structure, Key Conditions Precedent. Format professionally.`,
+    email: `You are an ECL deal origination specialist. Write a compelling 150-word outreach email to the founder/CEO of ${c.n}.\n\nCOMPANY DATA:\n${ctx}\n\nTone: founder-friendly, non-dilution focused, fast. Mention ECL's 72-hour funding, no equity dilution, and that AURA has already pre-scored ${c.n} positively. Call to action: 20-min intro call.`,
+    dd: `You are AURA, ECL's underwriting engine. Create a detailed due diligence checklist for ${c.n}.\n\nCOMPANY DATA:\n${ctx}\n\nOrganise by: 1) Financial Documentation 2) Contract & Revenue Quality 3) Product & Retention Metrics 4) Team & Governance 5) Legal & Compliance 6) Banking & Cash Flow. Be specific to SaaS/venture debt context.`
   };
 
-  try{
-    const res=await fetch("/api/generate",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:prompts[curTab]}]})
+  const pane = document.getElementById(`ai-pane-${curTab}`);
+  pane.innerHTML = `<div class="ai-load"><div class="spin"></div>AURA generating ${curTab}…</div>`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': key,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: 'claude-3-5-sonnet-20241022',
+        max_tokens: 1000,
+        messages: [{role: 'user', content: prompts[curTab]}]
+      })
     });
-    const data=await res.json();
-    if(data.error) throw new Error(data.error.message||JSON.stringify(data.error));
-    const text=data.content?.map(b=>b.text||'').join('')||'No response.';
-    pane.innerHTML=`<div class="ai-out">${text}</div><div style="display:flex;gap:7px;margin-top:8px"><button class="btn btn-ghost btn-sm" onclick="copyOut('${curTab}')"><i class="fas fa-copy"></i> Copy</button><button class="btn btn-ghost btn-sm" onclick="runAI()"><i class="fas fa-rotate"></i> Regen</button></div>`;
-  }catch(e){
-    pane.innerHTML=`<div class="ai-out" style="color:var(--red)">⚠️ ${e.message}</div>`;
+    
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error?.message || `API error: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    const text = data.content?.[0]?.text || 'Error generating response.';
+    pane.innerHTML = `<div class="ai-out">${text}</div>`;
+  } catch(e) {
+    pane.innerHTML = `<div class="ai-out" style="color:var(--red)">Error: ${e.message}</div>`;
+    toast(`API Error: ${e.message}`, 'err');
   }
 }
-function copyOut(tab){
-  const el=document.querySelector(`#ai-pane-${tab} .ai-out`);
-  if(el){navigator.clipboard.writeText(el.textContent);toast('Copied','ok');}
+
+function copyOut() {
+  const el = document.querySelector(`#ai-pane-${curTab} .ai-out`);
+  if(!el){toast('Generate content first','err');return;}
+  navigator.clipboard.writeText(el.textContent).then(()=>toast('Copied to clipboard'));
 }
 
-// ── PIPELINE ──
-function addToPipe(){
-  if(!selCo)return;
-  const c=selCo;
-  if(pipeline.some(d=>d.name===c.n))return toast(`${c.n} already in pipeline`,'err');
-  const sc=aura(c),pd=calcPD(sc.total),lgd=calcLGD(c);
-  const g=getGrade(sc.total,pd);
-  const facLow=(c.arr*g.fac*0.7).toFixed(1), facHigh=(c.arr*g.fac*1.3).toFixed(1);
-  pipeline.unshift({
-    id:Date.now(),name:c.n,sector:c.s,loc:c.l,
-    arr:c.arr,growth:c.g,nrr:c.nrr,src:c.src,
-    score:sc.total.toFixed(1),grade:g.g,
-    facRange:`$${facLow}M–$${facHigh}M`,
-    facility:(c.arr*g.fac).toFixed(1),
-    pd:pd.toFixed(1),lgd:lgd.toFixed(1),
-    el:((pd/100)*(lgd/100)*100).toFixed(2),
-    pricing:g.pricing,stage:'Prospect',
-    added:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})
-  });
+function addToPipe() {
+  if(!selCo){toast('Select a company first','err');return;}
+  const c = selCo;
+  if(pipeline.some(d=>d.name===c.n)){toast(`${c.n} already in pipeline`,'err');return;}
+  const sc = aura(c), pd = calcPD(sc.total), g = getGradeObj(sc.total, pd);
+  pipeline.push({id:Date.now(),name:c.n,sector:c.s,arr:c.arr,score:sc.total,pd,grade:g.g,fac:parseFloat((c.arr*g.fac).toFixed(2)),stage:'disc',added:new Date().toISOString().split('T')[0]});
   savePipe();
-  toast(`${c.n} added to pipeline`,'ok');
-  renderCos();
+  toast(`${c.n} added to pipeline`);
+  renderCos(); updateKPIs(); renderPipe(); renderWatchlist();
 }
-function removePipe(id){pipeline=pipeline.filter(d=>d.id!==id);savePipe();toast('Removed','ok');}
-function setStage(id,s){const d=pipeline.find(d=>d.id===id);if(d){d.stage=s;savePipe();}}
-function savePipe(){
-  localStorage.setItem('aura_lite',JSON.stringify(pipeline));
-  updateKPIs();renderPipe();
-  document.getElementById('nb-pipe').textContent=pipeline.length;
+
+function savePipe() {
+  try{localStorage.setItem('aura_v2_pipe',JSON.stringify(pipeline));}catch(e){}
+  updateKPIs(); renderPipe();
 }
-function updateKPIs(){
-  const tot=pipeline.reduce((s,d)=>s+parseFloat(d.arr),0);
-  const fac=pipeline.reduce((s,d)=>s+parseFloat(d.facility),0);
-  const avg=pipeline.length?(pipeline.reduce((s,d)=>s+parseFloat(d.score),0)/pipeline.length).toFixed(0):0;
-  const fmt=v=>v>=1000?`$${(v/1000).toFixed(1)}B`:`$${v.toFixed(1)}M`;
-  document.getElementById('k-arr').textContent=fmt(tot);
-  document.getElementById('k-arrs').textContent=pipeline.length+' companies';
-  document.getElementById('k-deals').textContent=pipeline.length;
-  document.getElementById('k-score').textContent=avg||'—';
-  document.getElementById('k-fac').textContent=fmt(fac);
-  const pe=document.getElementById('pk-n');
-  if(pe){
-    document.getElementById('pk-n').textContent=pipeline.length;
-    document.getElementById('pk-arr').textContent=fmt(tot);
-    document.getElementById('pk-sc').textContent=avg||'—';
-    document.getElementById('pk-fac').textContent=fmt(fac);
-  }
-}
-function renderPipe(){
-  updateKPIs();
-  const w=document.getElementById('pipe-wrap');
-  if(!pipeline.length){w.innerHTML='<div style="text-align:center;padding:40px;color:var(--text3);font-family:var(--mono);font-size:12px">No deals yet — add from Discovery</div>';return;}
-  const stages=['Prospect','Diligence','Term Sheet','Funded','Declined'];
-  w.innerHTML=`<table class="pipe-t">
-    <thead><tr><th>Company</th><th>Sector</th><th>ARR</th><th>Source</th><th>Score</th><th>Grade</th><th>Indicative Range</th><th>PD%</th><th>EL%</th><th>Stage</th><th></th></tr></thead>
+
+function renderPipe() {
+  const w = document.getElementById('pipe-wrap');
+  if(!pipeline.length){w.innerHTML='<div style="text-align:center;padding:40px;color:var(--ink3);font-family:var(--mono);font-size:12px">No deals yet — add from Discovery</div>';return;}
+  const stages = [{v:'disc',l:'Discovery'},{v:'dd',l:'Due Diligence'},{v:'ic',l:'IC Review'},{v:'ts',l:'Term Sheet'},{v:'closed',l:'Closed'}];
+  w.innerHTML = `<table class="pipe-t">
+    <thead><tr><th>Company</th><th>Sector</th><th>ARR</th><th>Grade</th><th>AURA</th><th>PD%</th><th>Facility</th><th>Stage</th><th>Added</th><th></th></tr>
+    </thead>
     <tbody>${pipeline.map(d=>`<tr>
-      <td><strong>${d.name}</strong><br><span style="font-size:10px;color:var(--text3)">${d.loc}</span></td>
-      <td class="tm" style="color:var(--text3)">${d.sector}</td>
-      <td class="tm">${parseFloat(d.arr)>=1000?'$'+(d.arr/1000).toFixed(1)+'B':'$'+d.arr+'M'}</td>
-      <td class="tm" style="color:var(--text3)">${d.src}</td>
-      <td class="tm" style="color:var(--teal)">${d.score}</td>
-      <td><div class="grade-chip g${d.grade}">${d.grade}</div></td>
-      <td class="tm" style="color:var(--teal);font-size:10px">${d.facRange||'$'+d.facility+'M'}</td>
-      <td class="tm">${d.pd}%</td>
-      <td class="tm" style="color:${parseFloat(d.el)<5?'var(--green)':parseFloat(d.el)<12?'var(--amber)':'var(--red)'}">${d.el}%</td>
-      <td><select class="stage-sel" onchange="setStage(${d.id},this.value)">${stages.map(s=>`<option${d.stage===s?' selected':''}>${s}</option>`).join('')}</select></td>
-      <td><button class="btn btn-del btn-sm" onclick="removePipe(${d.id})"><i class="fas fa-trash"></i></button></td>
+      <td><strong>${d.name}</strong></td>
+      <td>${d.sector}</td>
+      <td style="font-family:var(--mono)">$${d.arr}M</td>
+      <td><span class="grade-chip g${d.grade}" style="width:22px;height:22px;font-size:11px;border-radius:6px">${d.grade}</span></td>
+      <td style="font-family:var(--mono)">${d.score}</td>
+      <td style="font-family:var(--mono)">${d.pd.toFixed(1)}%</td>
+      <td style="font-family:var(--mono)">$${d.fac}M</td>
+      <td><select class="stage-sel" onchange="setStage(${d.id},this.value)">${stages.map(s=>`<option value="${s.v}"${d.stage===s.v?' selected':''}>${s.l}</option>`).join('')}</select></td>
+      <td style="font-family:var(--mono);font-size:10px;color:var(--ink3)">${d.added}</td>
+      <td><button class="btn btn-danger btn-sm" onclick="removePipe(${d.id})">×</button></td>
     </tr>`).join('')}</tbody>
-  </table>`;
+   </table>`;
 }
 
-// ── CUSTOM ──
-function runCustom(){
-  const c={n:document.getElementById('c-name').value||'Custom Co.',s:document.getElementById('c-sec').value,l:'USA',
-    arr:parseFloat(document.getElementById('c-arr').value)||1,g:parseFloat(document.getElementById('c-g').value)||50,
-    m:parseFloat(document.getElementById('c-m').value)||70,nrr:parseFloat(document.getElementById('c-nrr').value)||105,
-    ltv:parseFloat(document.getElementById('c-ltv').value)||3,burn:parseFloat(document.getElementById('c-burn').value)||2,
-    run:parseFloat(document.getElementById('c-run').value)||6,cq:parseFloat(document.getElementById('c-cq').value)||0.65,
-    hhi:parseFloat(document.getElementById('c-hhi').value)||0.12,tier:parseInt(document.getElementById('c-tier').value)||3,
-    fund:0,src:'Manual',srcType:'official'};
-  const sc=aura(c),pd=calcPD(sc.total),lgd=calcLGD(c);
-  const el=(pd/100)*(lgd/100)*100,g=getGrade(sc.total,pd),fac=(c.arr*g.fac).toFixed(1);
-  const lyrs=[
-    {num:'L1',name:'Revenue Quality',pts:sc.L1,max:28,detail:`NRR ${c.nrr}%`},
-    {num:'L2',name:'Capital Efficiency',pts:sc.L2,max:32,detail:`LTV:CAC ${c.ltv}× · Burn ${c.burn}×`},
-    {num:'L3',name:'Cash Runway',pts:sc.L3,max:12,detail:`${c.run}mo`},
-    {num:'L4',name:'Concentration',pts:sc.L4,max:8,detail:`HHI ${c.hhi}`},
-    {num:'L5',name:'Market',pts:sc.L5,max:8,detail:c.s},
-    {num:'L6',name:'Structural',pts:sc.L6,max:7,detail:`${(c.cq*100).toFixed(0)}%`},
-    {num:'L7',name:'Sponsor',pts:sc.L7,max:8,detail:`Tier ${c.tier}`},
-    {num:'G+',name:'Growth Bonus',pts:sc.GB,max:7,detail:`${c.g}%`},
-  ];
-  const facLow=(c.arr*g.fac*0.7).toFixed(1), facHigh=(c.arr*g.fac*1.3).toFixed(1);
-  document.getElementById('c-result').innerHTML=`
-  <div class="card">
-    <div class="card-hd"><div class="card-ico ci-t"><i class="fas fa-chart-line"></i></div><h3>${c.n} — AURA Risk Analysis</h3><div class="grade-chip g${g.g}" style="margin-left:auto;width:24px;height:24px;font-size:12px;border-radius:7px">${g.g}</div></div>
-    ${lyrs.map(l=>{const p=(l.pts/l.max)*100;const col=p>=70?'var(--teal)':p>=45?'var(--amber)':'var(--red)';return `<div class="layer-row"><div class="ln">${l.num}</div><div class="li"><div class="lname">${l.name}</div><div class="ldetail">${l.detail}</div></div><div><div class="lbar-t"><div class="lbar-f" style="width:${p}%;background:${col}"></div></div><div class="lbar-lbl">${l.pts.toFixed(1)} / ${l.max}</div></div><div class="lpts" style="color:${col}">${l.pts.toFixed(1)}</div></div>`;}).join('')}
-    <div class="dec-box" style="margin-top:12px">
-      <div class="dec-grade" style="color:${g.col}">${g.g}</div>
-      <div class="dec-desc" style="color:${g.col}">${g.desc} · ${sc.total.toFixed(1)}/100</div>
-      <div class="dec-fac" style="font-size:18px;margin:6px 0 2px">Indicative Range: $${facLow}M – $${facHigh}M</div>
-      <div class="dec-facm">Pricing range: ${g.pricing} · ECL team decides final terms</div>
-      <div class="dec-tags">
-        <span class="dec-tag" style="color:var(--amber)">PD ${pd.toFixed(1)}%</span>
-        <span class="dec-tag">LGD ${lgd.toFixed(1)}%</span>
-        <span class="dec-tag" style="color:${el<5?'var(--green)':el<12?'var(--amber)':'var(--red)'}">EL ${el.toFixed(2)}%</span>
+function removePipe(id){pipeline=pipeline.filter(d=>d.id!==id);savePipe();toast('Removed','ok');}
+function setStage(id,s){const d=pipeline.find(d=>d.id===id);if(d){d.stage=s;savePipe();}updateKPIs();}
+
+// ══════════════════════════════
+// WATCHLIST
+// ══════════════════════════════
+function renderWatchlist() {
+  const watchCos = COS.filter(c=>isECLSweet(c)&&!pipeline.some(p=>p.name===c.n)).sort((a,b)=>aura(b).total-aura(a).total).slice(0,9);
+  const w = document.getElementById('wl-wrap');
+  if(!watchCos.length){w.innerHTML='<div style="text-align:center;padding:40px;color:var(--ink3)">All sweet-spot companies are in your pipeline.</div>';return;}
+  w.innerHTML = `<div class="wl-grid">${watchCos.map(c=>{
+    const sc=aura(c),pd=calcPD(sc.total),g=getGradeObj(sc.total,pd);
+    const arr=c.arr>=1000?`$${(c.arr/1000).toFixed(1)}B`:`$${c.arr}M`;
+    return `<div class="wl-card">
+      <div class="wl-head">
+        <div><div class="wl-name">${c.n}</div><div class="wl-sector">${c.s} · ${c.l}</div></div>
+        <div><div class="grade-chip g${g.g}" style="width:24px;height:24px;font-size:11px;border-radius:6px">${g.g}</div></div>
       </div>
-    </div>
-  </div>`;
-  toast('AURA risk analysis complete','ok');
-}
-function clearCustom(){
-  ['c-name','c-arr','c-g','c-m','c-nrr','c-ltv','c-burn','c-run','c-cq','c-hhi'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
-  document.getElementById('c-result').innerHTML='<div class="analysis-empty"><div class="ae-ico">🎯</div><div class="ae-t">Ready to analyse</div><div class="ae-s">Fill in details and click Run</div></div>';
-}
-
-// ── EXPORT ──
-function doExport(){
-  if(!pipeline.length)return toast('No deals to export','err');
-  const hdrs=['Company','Sector','Location','ARR($M)','Growth%','NRR%','Score','Grade','Indicative Range','PD%','LGD%','EL%','Pricing Range','Stage','Source','Added'];
-  const rows=pipeline.map(d=>[d.name,d.sector,d.loc,d.arr,d.growth,d.nrr,d.score,d.grade,d.facRange||d.facility,d.pd,d.lgd,d.el,`"${d.pricing}"`,d.stage,d.src,d.added]);
-  const csv=[hdrs,...rows].map(r=>r.join(',')).join('\n');
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
-  a.download=`ECL_AURA_${new Date().toISOString().split('T')[0]}.csv`;
-  a.click();
-  toast('Pipeline exported','ok');
+      <div class="wl-metrics">
+        <div class="wl-m"><div class="wl-m-val">${arr}</div><div class="wl-m-lbl">ARR</div></div>
+        <div class="wl-m"><div class="wl-m-val">${c.nrr}%</div><div class="wl-m-lbl">NRR</div></div>
+        <div class="wl-m"><div class="wl-m-val">${sc.total}</div><div class="wl-m-lbl">AURA Score</div></div>
+        <div class="wl-m"><div class="wl-m-val">${pd.toFixed(1)}%</div><div class="wl-m-lbl">PD</div></div>
+      </div>
+      <button class="btn btn-t btn-sm" style="width:100%;margin-top:10px;justify-content:center" onclick="selectCo('${c.n}');goPage('discovery')"><i class="fas fa-radar"></i> Analyse & Add</button>
+    </div>`;
+  }).join('')}</div>`;
 }
 
-// ── NAV ──
-const PAGE_META={
-  discovery:['Deal Discovery','Real ARR data · Sacra, PitchBook, Company announcements · 2024–2025'],
+// ══════════════════════════════
+// CUSTOM RISK LAB
+// ══════════════════════════════
+function runCustom() {
+  const c = {
+    n: document.getElementById('c-name').value || 'Unknown',
+    s: document.getElementById('c-sec').value,
+    arr: parseFloat(document.getElementById('c-arr').value)||2,
+    g: parseFloat(document.getElementById('c-g').value)||50,
+    m: parseFloat(document.getElementById('c-m').value)||70,
+    nrr: parseFloat(document.getElementById('c-nrr').value)||110,
+    ltv: parseFloat(document.getElementById('c-ltv').value)||3,
+    burn: parseFloat(document.getElementById('c-burn').value)||1.5,
+    run: parseFloat(document.getElementById('c-run').value)||12,
+    cq: parseFloat(document.getElementById('c-cq').value)||0.7,
+    hhi: parseFloat(document.getElementById('c-hhi').value)||0.1,
+    tier: parseInt(document.getElementById('c-tier').value)||2,
+    fund: 0, l:''
+  };
+  const sc = aura(c), pd = calcPD(sc.total), lgd = calcLGD(c), el = calcEL(pd,lgd,c.arr);
+  const g = getGradeObj(sc.total, pd), fac = (c.arr*g.fac).toFixed(2);
+  const dscr = calcDSCR(c), clv = calcCLV(c);
+
+  document.getElementById('c-result').innerHTML = `
+    <div class="card">
+      <div class="card-hd"><div class="card-ico ci-t"><i class="fas fa-shield-halved"></i></div><h3>${c.n} · AURA Result</h3><div class="grade-chip g${g.g}" style="margin-left:auto;width:28px;height:28px;font-size:13px;border-radius:8px">${g.g}</div></div>
+      <div class="layers-grid">
+        ${[['Revenue Quality',sc.L1,30,'#0A8C7A'],['Unit Economics',sc.L2,28,'#1A4FAA'],['Runway',sc.L3,15,'#6B2FAA'],['Concentration',sc.L4,10,'#C47A00'],['Growth',sc.L5,7,'#1A7A52'],['Investor Tier',sc.L6,5,'#C42B2B'],['Sector Tailwind',sc.L7,5,'#0A8C7A'],['Market Position',sc.L8,5,'#6B2FAA']].map(([n,v,max,col])=>`
+          <div class="layer-row">
+            <div class="layer-lbl">${n}</div>
+            <div class="layer-bar-bg"><div class="layer-bar-fill" style="width:${(v/max)*100}%;background:${col}"></div></div>
+            <div class="layer-score">${v}<span class="layer-max">/${max}</span></div>
+          </div>`).join('')}
+      </div>
+      <div class="dec-box ${g.g}">
+        <div class="dec-hd"><div class="dec-grade" style="color:${g.col}">Grade ${g.g}</div><div><div class="dec-title">${g.desc}</div><div class="dec-sub">AURA: ${sc.total}/100</div></div></div>
+        <div class="dec-metrics">
+          <div class="dec-m"><div class="dec-m-val">${pd.toFixed(1)}%</div><div class="dec-m-lbl">PD</div></div>
+          <div class="dec-m"><div class="dec-m-val">${lgd}%</div><div class="dec-m-lbl">LGD</div></div>
+          <div class="dec-m"><div class="dec-m-val">${el.toFixed(3)}%</div><div class="dec-m-lbl">EL</div></div>
+          <div class="dec-m"><div class="dec-m-val">$${fac}M</div><div class="dec-m-lbl">Max Facility</div></div>
+        </div>
+        <div class="risk-radar" style="margin-top:10px">
+          <div class="rr-item"><div class="rr-label">DSCR (est.)</div><div class="rr-value">${dscr}×</div><div class="rr-desc">Debt service coverage</div></div>
+          <div class="rr-item"><div class="rr-label">CLV Score</div><div class="rr-value">${clv}×</div><div class="rr-desc">NRR × Margin / Burn</div></div>
+        </div>
+        <span class="pricing-pill"><i class="fas fa-tag" style="color:var(--teal);font-size:10px"></i>${g.pricing}</span>
+      </div>
+    </div>`;
+}
+function clearCustom() { ['c-name','c-arr','c-g','c-m','c-nrr','c-ltv','c-burn','c-run','c-cq','c-hhi'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';}); document.getElementById('c-result').innerHTML='<div class="analysis-empty"><div class="ae-ico">🎯</div><div class="ae-t">Ready to analyse</div><div class="ae-s">Fill in company details and click Run</div></div>';}
+
+// ══════════════════════════════
+// ADVANCED RISK LAB
+// ══════════════════════════════
+function runRiskLab() {
+  const c = {
+    n: document.getElementById('rl-name').value || 'Company',
+    s: document.getElementById('rl-sec').value,
+    arr: parseFloat(document.getElementById('rl-arr').value)||2.5,
+    g: parseFloat(document.getElementById('rl-g').value)||90,
+    m: parseFloat(document.getElementById('rl-m').value)||75,
+    nrr: parseFloat(document.getElementById('rl-nrr').value)||112,
+    ltv: parseFloat(document.getElementById('rl-ltv').value)||4.0,
+    burn: parseFloat(document.getElementById('rl-burn').value)||1.5,
+    run: parseFloat(document.getElementById('rl-run').value)||14,
+    cq: parseFloat(document.getElementById('rl-cq').value)||0.75,
+    hhi: parseFloat(document.getElementById('rl-hhi').value)||0.12,
+    tier: parseInt(document.getElementById('rl-tier').value)||2,
+    fund: parseFloat(document.getElementById('rl-fund').value)||12,
+    churn: parseFloat(document.getElementById('rl-churn').value)||8,
+    l: ''
+  };
+  const sc = aura(c), pd = calcPD(sc.total), lgd = calcLGD(c), el = calcEL(pd,lgd,c.arr);
+  const g = getGradeObj(sc.total, pd), fac = (c.arr*g.fac).toFixed(2);
+  const dscr = calcDSCR(c), clv = calcCLV(c);
+
+  // ARPU estimate
+  const mrev = parseFloat(document.getElementById('rl-mrev').value)||(c.arr*1000000/12);
+  const debtObs = parseFloat(document.getElementById('rl-debtobs').value)||30000;
+  const realDSCR = Math.round((mrev/debtObs)*10)/10;
+
+  document.getElementById('rl-result').innerHTML = `
+    <div class="card">
+      <div class="card-hd"><div class="card-ico ci-t"><i class="fas fa-shield-halved"></i></div><h3>${c.n} · Full Risk Analysis</h3><div class="grade-chip g${g.g}" style="margin-left:auto;width:28px;height:28px;font-size:13px;border-radius:8px">${g.g}</div></div>
+      <div class="layers-grid">
+        ${[['Revenue Quality',sc.L1,30,'#0A8C7A'],['Unit Economics',sc.L2,28,'#1A4FAA'],['Runway',sc.L3,15,'#6B2FAA'],['Concentration Risk',sc.L4,10,'#C47A00'],['Growth Trajectory',sc.L5,7,'#1A7A52'],['Investor Quality',sc.L6,5,'#C42B2B'],['Sector Tailwind',sc.L7,5,'#0A8C7A'],['Market Position',sc.L8,5,'#6B2FAA']].map(([n,v,max,col])=>`
+          <div class="layer-row">
+            <div class="layer-lbl">${n}</div>
+            <div class="layer-bar-bg"><div class="layer-bar-fill" style="width:${(v/max)*100}%;background:${col}"></div></div>
+            <div class="layer-score">${v}<span class="layer-max">/${max}</span></div>
+          </div>`).join('')}
+      </div>
+      <div class="dec-box ${g.g}">
+        <div class="dec-hd"><div class="dec-grade" style="color:${g.col}">Grade ${g.g}</div><div><div class="dec-title">${g.desc}</div></div></div>
+        <div class="dec-metrics">
+          <div class="dec-m"><div class="dec-m-val">${pd.toFixed(1)}%</div><div class="dec-m-lbl">PD annual</div></div>
+          <div class="dec-m"><div class="dec-m-val">${lgd}%</div><div class="dec-m-lbl">LGD</div></div>
+          <div class="dec-m"><div class="dec-m-val">${el.toFixed(3)}%</div><div class="dec-m-lbl">Exp. Loss</div></div>
+          <div class="dec-m"><div class="dec-m-val">$${fac}M</div><div class="dec-m-lbl">Max Facility</div></div>
+        </div>
+        <div class="risk-radar" style="margin-top:10px">
+          <div class="rr-item"><div class="rr-label">DSCR (real input)</div><div class="rr-value">${realDSCR}×</div><div class="rr-desc">Monthly Rev / Debt Service · &gt;1.5× = healthy</div></div>
+          <div class="rr-item"><div class="rr-label">CLV Score</div><div class="rr-value">${clv}×</div><div class="rr-desc">NRR × Margin / Burn efficiency</div></div>
+          <div class="rr-item"><div class="rr-label">Capital Efficiency</div><div class="rr-value">${c.fund>0?Math.round((c.arr/c.fund)*100)/100:0}×</div><div class="rr-desc">ARR / Funding raised</div></div>
+          <div class="rr-item"><div class="rr-label">Gross Churn</div><div class="rr-value">${c.churn}%</div><div class="rr-desc">&lt;10% annual = acceptable</div></div>
+        </div>
+        <span class="pricing-pill"><i class="fas fa-tag" style="color:var(--teal);font-size:10px"></i>${g.pricing}</span>
+      </div>
+    </div>`;
+
+  // Formula decomposition
+  document.getElementById('rl-formula').style.display='block';
+  document.getElementById('formula-out').innerHTML = `
+    <strong>AURA 8-Layer Formula Decomposition for ${c.n}</strong><br><br>
+    <strong>L1: Revenue Quality (${sc.L1}/30)</strong><br>
+    &nbsp;&nbsp;= min(30, (NRR-90)/2.2 × 0.6 + ContractQuality × 12)<br>
+    &nbsp;&nbsp;= min(30, (${c.nrr}-90)/2.2 × 0.6 + ${c.cq} × 12) = <strong>${sc.L1}</strong><br><br>
+    <strong>L2: Unit Economics (${sc.L2}/28)</strong><br>
+    &nbsp;&nbsp;= min(28, LTVscore + BurnScore + MarginScore)<br>
+    &nbsp;&nbsp;LTV: min(12, ${c.ltv}/5 × 12) | Burn: max(0, 10-(${c.burn}-0.5)×5) | Margin: min(6, (${c.m}-50)/7)<br><br>
+    <strong>L3: Runway (${sc.L3}/15)</strong> — ${c.run} months runway<br>
+    <strong>L4: Concentration (${sc.L4}/10)</strong> — HHI=${c.hhi}: max(0, 10-${c.hhi}×80)<br>
+    <strong>L5: Growth (${sc.L5}/7)</strong> — ${c.g}% YoY ARR growth<br>
+    <strong>L6: Investor Quality (${sc.L6}/5)</strong> — Tier ${c.tier}<br>
+    <strong>L7: Sector Tailwind (${sc.L7}/5)</strong> — ${c.s}<br>
+    <strong>L8: Market Position (${sc.L8}/5)</strong> — $${c.arr}M ARR<br><br>
+    <strong>Total AURA Score: ${sc.L1}+${sc.L2}+${sc.L3}+${sc.L4}+${sc.L5}+${sc.L6}+${sc.L7}+${sc.L8} = ${sc.total}/100</strong><br><br>
+    <strong>PD Model:</strong> Score-to-PD lookup table · ${sc.total} → ${pd.toFixed(1)}% annualised PD<br>
+    <strong>LGD Model:</strong> 45% base − CQ×20 + HHI×80 − NRR_adj − Margin_adj = ${lgd}%<br>
+    <strong>EL:</strong> PD × LGD × ARR = ${pd.toFixed(1)}% × ${lgd}% × $${c.arr}M = $${el.toFixed(3)}M<br>
+    <strong>DSCR:</strong> Monthly Revenue / Monthly Debt Obligations = ${realDSCR}×<br>
+    <strong>CLV Score:</strong> (NRR/100) × (Margin/100) / Burn = ${clv}×<br>
+    <strong>Facility Size:</strong> ARR × ${(g.fac*100).toFixed(0)}% (Grade ${g.g}) = $${fac}M
+  `;
+}
+function clearRiskLab() {['rl-name','rl-arr','rl-g','rl-m','rl-nrr','rl-ltv','rl-burn','rl-run','rl-cq','rl-hhi','rl-mrev','rl-debtobs','rl-churn','rl-fund'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});document.getElementById('rl-result').innerHTML='<div class="analysis-empty"><div class="ae-ico">🎯</div><div class="ae-t">Ready to model</div><div class="ae-s">Fill company parameters and<br>click Run Full AURA Analysis</div></div>';document.getElementById('rl-formula').style.display='none';}
+
+// ══════════════════════════════
+// EXPORT
+// ══════════════════════════════
+function doExport() {
+  if(!pipeline.length){toast('No deals to export','err');return;}
+  const rows = [['Company','Sector','ARR($M)','AURA Score','Grade','PD%','Facility($M)','Stage','Added'],...pipeline.map(d=>[d.name,d.sector,d.arr,d.score,d.grade,d.pd.toFixed(1),d.fac,d.stage,d.added])];
+  const csv = rows.map(r=>r.join(',')).join('\n');
+  const a = document.createElement('a'); a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv); a.download='ECL_AURA_Pipeline.csv'; a.click();
+  toast('Pipeline exported');
+}
+
+// ══════════════════════════════
+// NAVIGATION
+// ══════════════════════════════
+const pagesMeta = {
+  discovery:['Deal Discovery','60 verified US SaaS companies · AURA 8-Layer Engine'],
+  risk:['Advanced Risk Lab','Institution-grade PD/LGD/EL/DSCR modelling'],
   pipeline:['Deal Pipeline','Track deals from discovery through funding'],
-  benchmarking:['Competitive Benchmarking','ECL vs. US venture debt market · 2025'],
-  market:['Market Intelligence','US SaaS venture debt market data · Q1 2025'],
-  custom:['Manual Entry','Enter any company for instant AURA scoring'],
+  watchlist:['ECL Watchlist','High-potential companies in ECL sweet spot'],
+  market:['Market Intelligence','US SaaS venture debt market · Q1 2026'],
+  benchmarking:['Lender Benchmarking','ECL vs. the full venture debt market'],
+  pitch:['Why AURA','Platform capabilities & competitive advantages'],
+  custom:['Risk Calculator','Instant AURA scoring for any company'],
 };
-function goPage(p){
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+function goPage(p) {
+  document.querySelectorAll('.nav-item').forEach(l=>l.classList.remove('active'));
   const l=document.querySelector(`[data-page="${p}"]`);if(l)l.classList.add('active');
   document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));
   document.getElementById(`page-${p}`).classList.add('active');
-  const[t,s]=PAGE_META[p]||[p,''];
-  document.getElementById('tb-t').textContent=t;
-  document.getElementById('tb-s').textContent=s;
-  if(p==='pipeline')renderPipe();
+  const meta = pagesMeta[p]||[p,''];
+  document.getElementById('tb-title').textContent = meta[0];
+  document.getElementById('tb-sub').textContent = meta[1];
+  if(p==='watchlist') renderWatchlist();
 }
 document.querySelectorAll('.nav-item').forEach(l=>l.addEventListener('click',()=>goPage(l.dataset.page)));
-document.getElementById('g-search').addEventListener('input',renderCos);
 
-// ── TOAST ──
+// ══════════════════════════════
+// API KEY CHECK
+// ══════════════════════════════
+function checkKey() {
+  const k=document.getElementById('apiKey').value.trim();
+  const s=document.getElementById('key-status');
+  if(!k){s.textContent='No key';s.className='';return;}
+  if(k.startsWith('sk-ant-')){s.textContent='✓ Key set';s.className='ok';}
+  else{s.textContent='Invalid key';s.className='err';}
+}
+function checkKeyStatus(){checkKey();}
+try{const k=localStorage.getItem('aura_apikey');if(k){document.getElementById('apiKey').value=k;checkKey();}}catch(e){}
+document.getElementById('apiKey').addEventListener('input',()=>{try{localStorage.setItem('aura_apikey',document.getElementById('apiKey').value);}catch(e){}});
+
+// ══════════════════════════════
+// TOAST
+// ══════════════════════════════
 function toast(msg,type='ok'){
-  const s=document.getElementById('toasts');
-  const t=document.createElement('div');
-  t.className=`toast ${type}`;
-  t.innerHTML=`<div class="t-dot"></div>${msg}`;
-  s.appendChild(t);
-  setTimeout(()=>t.remove(),3500);
+  const t=document.createElement('div');t.className=`toast ${type}`;t.innerHTML=`<i class="fas fa-${type==='ok'?'check':'exclamation-circle'}"></i>${msg}`;
+  document.getElementById('toasts').appendChild(t);
+  setTimeout(()=>t.remove(),3000);
 }
 
-// ── API KEY STATUS (always connected via server) ──
-function checkKeyStatus(){
-  const existing = document.getElementById('key-status-btn');
-  if(existing) existing.remove();
-  const btn = document.createElement('button');
-  btn.id = 'key-status-btn';
-  btn.className = 'btn btn-ghost btn-sm';
-  btn.style.cssText = 'font-family:var(--mono);font-size:10px;cursor:default;';
-  btn.innerHTML = `<span style="color:var(--green)">●</span> AURA Connected`;
-  document.querySelector('.tb-right').insertBefore(btn, document.querySelector('.tb-right').firstChild);
+// ══════════════════════════════
+// CHARTS
+// ══════════════════════════════
+function initCharts() {
+  try {
+    new Chart(document.getElementById('mkt-chart'),{
+      type:'bar',
+      data:{
+        labels:['2018','2019','2020','2021','2022','2023','2024'],
+        datasets:[{label:'Venture Debt Volume ($B)',data:[32,37,42,52,65,73,83.4],backgroundColor:'rgba(10,140,122,0.7)',borderRadius:5}]
+      },
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>'$'+v+'B'},grid:{color:'rgba(0,0,0,0.05)'}},x:{grid:{display:false}}}}
+    });
+    const secData = COS.reduce((acc,c)=>{acc[c.s]=(acc[c.s]||0)+1;return acc;},{});
+    const secColors=['#0A8C7A','#1A4FAA','#6B2FAA','#C47A00','#1A7A52','#C42B2B','#7E88A8','#13B39B','#C47A00'];
+    new Chart(document.getElementById('sector-chart'),{
+      type:'doughnut',
+      data:{labels:Object.keys(secData),datasets:[{data:Object.values(secData),backgroundColor:secColors,borderWidth:2,borderColor:'#fff'}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:12}}}}
+    });
+  } catch(e){}
 }
 
-// ── THEME TOGGLE ──
-function toggleTheme(){
-  const dark = document.body.classList.toggle('dark');
-  document.getElementById('theme-btn').textContent = dark ? '☀️' : '🌙';
-  localStorage.setItem('aura_theme', dark ? 'dark' : 'light');
-}
-function initTheme(){
-  const saved = localStorage.getItem('aura_theme');
-  if(saved === 'dark'){
-    document.body.classList.add('dark');
-    document.getElementById('theme-btn').textContent = '☀️';
-  }
-}
-
-// ── INIT ──
+// ══════════════════════════════
+// INIT
+// ══════════════════════════════
 renderCos();
+renderPipe();
+renderWatchlist();
 updateKPIs();
-document.getElementById('nb-pipe').textContent=pipeline.length;
-document.getElementById('nb-all').textContent=COS.length;
-checkKeyStatus();
-initTheme();
+setTimeout(initCharts, 100);
 </script>
 </body>
 </html>
